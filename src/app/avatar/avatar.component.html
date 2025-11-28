@@ -1,0 +1,19 @@
+<div class="ui">
+  <div class="score">Pontuação: {{score}}</div>
+  <div class="avatar-wrap">
+    <img class="avatar" src="assets/avatar_realistic.svg" alt="avatar">
+    <div class="mouth" [class.speaking]="speaking"></div>
+  </div>
+  <div class="controls">
+    <button class="mic" [class.listening]="listening" (click)="toggleListen()">
+      <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 14 0h-2z"/></svg>
+      <span>{{ listening ? 'Ouvindo...' : 'Responder' }}</span>
+    </button>
+  </div>
+  <div class="panel" *ngIf="currentDialog">
+    <div class="row"><span class="label">Pergunta (EN):</span><span class="value">{{currentDialog.question}}</span></div>
+    <div class="row"><span class="label">Tradução (PT):</span><span class="value">{{currentDialog.translation}}</span></div>
+    <div class="row" *ngIf="recognizedText"><span class="label">Você disse:</span><span class="value">{{recognizedText}}</span></div>
+    <div class="row" *ngIf="feedback"><span class="label">Feedback:</span><span class="value">{{feedback}}</span></div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+[
+  {"question":"Hello! How are you?","translation":"Olá! Como você está?","answer":"I am fine, thank you!"},
+  {"question":"What is your name?","translation":"Qual é o seu nome?","answer":"My name is Anna."},
+  {"question":"Where are you from?","translation":"De onde você é?","answer":"I am from the United States."},
+  {"question":"Do you like learning English?","translation":"Você gosta de aprender inglês?","answer":"Yes, I love learning new languages!"},
+  {"question":"What is your favorite hobby?","translation":"Qual é o seu hobby favorito?","answer":"My favorite hobby is reading."},
+  {"question":"What time do you wake up?","translation":"Que horas você acorda?","answer":"I wake up at seven o'clock."}
+]

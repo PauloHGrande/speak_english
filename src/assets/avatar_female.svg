@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 340">
+  <defs>
+    <linearGradient id="skin" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#f7d7c9"/>
+      <stop offset="1" stop-color="#f1c7b5"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" rx="28" fill="#eaeef5"/>
+  <g transform="translate(30,24)">
+    <!-- hair -->
+    <path d="M20 120c0-62 52-96 110-86 40 6 70 38 70 86 0 48-22 78-62 92-46 16-110-12-118-92z" fill="#2b3248"/>
+    <!-- face -->
+    <ellipse cx="120" cy="130" rx="64" ry="78" fill="url(#skin)"/>
+    <!-- eyes -->
+    <circle cx="98" cy="126" r="6" fill="#333"/>
+    <circle cx="142" cy="126" r="6" fill="#333"/>
+    <!-- nose -->
+    <path d="M120 140c-2 6-2 6 0 12" stroke="#c88" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <!-- lips (static line; dynamic mouth overlay será posicionado no CSS) -->
+    <path d="M94 160c18 12 34 12 52 0" fill="none" stroke="#c56" stroke-width="3" stroke-linecap="round"/>
+    <!-- shoulders -->
+    <path d="M60 220c36 22 84 22 120 0" fill="#2b3248"/>
+  </g>
+</svg>

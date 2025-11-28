@@ -1,0 +1,7 @@
+body{margin:0;background:linear-gradient(135deg,#2b2d42,#5b9cff,#a15bff);background-size:400% 400%;animation:bgMove 18s ease infinite;color:#edf2f4;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.center{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+.card{width:600px;max-width:92vw;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border-radius:22px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.title{font-weight:600;font-size:22px;margin-bottom:10px}
+.subtitle{opacity:.8;margin-bottom:20px}
+.score{font-size:18px;font-weight:600;margin-bottom:10px}
