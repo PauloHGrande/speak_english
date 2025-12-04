@@ -1,0 +1,16 @@
+<div class='card'>
+    <h2 class='title'>Pratique Inglês por Módulos</h2>
+    <p class='subtitle'>Responda corretamente para avançar</p>
+    <p class='score'>Pontuação: {{ score }}</p>
+
+    <div class='avatar'>
+        <img src='assets/avatar.png' alt='Avatar'>
+    </div>
+
+    <button class='mic-btn' (click)='startListening()'>🎤 Responder</button>
+
+    <div class='panel'>
+        <p><strong>Pergunta (EN):</strong> {{ currentStep?.prompt }}</p>
+        <p><strong>Tradução (PT):</strong> {{ currentStep?.translation }}</p>
+    </div>
+</div>
