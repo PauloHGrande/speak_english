@@ -1,0 +1,32 @@
+<aside class="sidebar" aria-label="Módulos de conversação">
+    <h3 class="sidebar__title">Módulos</h3>
+
+    <!-- GRID de módulos (1 coluna por padrão, 2 colunas quando há espaço) -->
+    <div class="modules" role="list">
+        <div
+                class="module-card"
+                role="listitem"
+                *ngFor="let m of modules; let i = index; trackBy: trackById"
+                [class.module-card--active]="i === activeIndex"
+                (click)="onSelect(i)"
+                tabindex="0"
+                (keyup.enter)="onSelect(i)"
+                role="button"
+                [attr.aria-pressed]="i === activeIndex"
+                [attr.aria-label]="m.title"
+        >
+            <div class="module-card__header">
+                <span class="module-card__title">{{ m.title }}</span>
+                <span class="module-card__badge">{{ m.level }}</span>
+            </div>
+
+            <p class="module-card__desc">{{ m.description }}</p>
+
+            <div class="module-card__meta">
+                <span>{{ m.lessons }} lições</span>
+                <span>•</span>
+                <span>Duração: {{ m.duration }}</span>
+            </div>
+        </div>
+    </div>
+</aside>

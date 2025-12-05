@@ -1,0 +1,17 @@
+{
+  "moduleId": "restaurant",
+  "title": "No Restaurante",
+  "level": "Iniciante",
+  "dialogs": [
+    {
+      "question": "I would like to see the menu, please.",
+      "translation": "Eu gostaria de ver o cardápio, por favor.",
+      "answer": "Sure, here it is."
+    },
+    {
+      "question": "Can I have the bill, please?",
+      "translation": "Posso ver a conta, por favor?",
+      "answer": "Yes, I'll bring it right away."
+    }
+  ]
+}

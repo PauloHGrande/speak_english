@@ -18,8 +18,28 @@ export class AvatarComponent implements AfterViewInit {
   audioContext!: AudioContext;
   analyser!: AnalyserNode;
   dataArray!: Uint8Array;
+  private advanceTimer: any = null; // manter referencia pra limpar
 
-  constructor(private voice: VoiceService) {}
+
+  // avatar.component.ts (adicione no constructor)
+  constructor(private voice: VoiceService) {
+    // Quando módulo mudar, limpamos estados e pedimos a primeira pergunta
+    this.voice.moduleChanged$.subscribe(() => {
+      // cancela qualquer avanço pendente
+      if (this.advanceTimer) {
+        clearTimeout(this.advanceTimer);
+        this.advanceTimer = null;
+      }
+
+      this.listening = false;
+      this.feedback = '';
+      this.recognizedText = '';
+      this.score = 0;
+      this.currentDialog = null;
+
+      this.nextQuestion();
+    });
+  }
 
   ngAfterViewInit() {
     this.initAudio();
@@ -86,8 +106,20 @@ export class AvatarComponent implements AfterViewInit {
     if (correct) {
       this.feedback = '✅ Correct!';
       this.score += 10;
-      this.speakWithMouth('Great!');
-      setTimeout(() => this.nextQuestion(), 1500);
+
+      // Cancela qualquer timer antigo
+      if (this.advanceTimer) {
+        clearTimeout(this.advanceTimer);
+        this.advanceTimer = null;
+      }
+
+      // Avança quando o TTS terminar (robusto)
+      this.speakWithMouth('Great!', () => {
+        this.nextQuestion();
+      });
+
+      // Se você preferir usar tempo fixo, mantenha mas limpe sempre:
+      // this.advanceTimer = setTimeout(() => this.nextQuestion(), 1200);
     } else {
       this.feedback = '❌ Try again';
       this.speakWithMouth('Please try again');
@@ -95,15 +127,17 @@ export class AvatarComponent implements AfterViewInit {
   }
 
   nextQuestion() {
-    this.currentDialog = this.voice.getNextDialog();
+    const next = this.voice.getNextDialog();
+    this.currentDialog = next;
 
-    if (this.currentDialog) {
+    if (next) {
       this.feedback = '';
-      this.speakWithMouth(this.currentDialog.question);
+      this.speakWithMouth(next.question);
     } else {
       this.speakWithMouth('Congratulations! You finished this module.');
     }
   }
+
 
   speakWithMouth(text: string, cb?: () => void) {
     this.voice.speak(text, {

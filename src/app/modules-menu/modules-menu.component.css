@@ -1,0 +1,121 @@
+
+/* ===== Sidebar ===== */
+.sidebar {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 16px; /* mais respiro que 12/14 */
+  backdrop-filter: blur(4px);
+}
+
+/* Título */
+.sidebar__title {
+  margin: 0 0 10px 0; /* mais espaço abaixo do título */
+  font-size: 17px;    /* sutilmente maior */
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ===== GRID: duas colunas fixas com espaçamento confortável ===== */
+.modules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* sempre duas colunas */
+  column-gap: 18px;  /* espaço horizontal entre colunas */
+  row-gap: 18px;     /* espaço vertical entre linhas */
+}
+
+/* ===== Card — maior, com mais padding e altura mínima ===== */
+.module-card {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header | desc | meta */
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;     /* mais arredondado */
+  padding: 14px;           /* mais respiro interno */
+  min-height: 108px;       /* altura mínima para não “colocar um em cima do outro” */
+
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    background-color 0.22s ease;
+}
+
+.module-card:hover,
+.module-card:focus {
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.10) inset;
+  border-color: rgba(255, 255, 255, 0.22);
+  background-color: rgba(255, 255, 255, 0.10);
+}
+
+.module-card--active {
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.35) inset;
+}
+
+/* Foco acessível sem “pulo” */
+.module-card:focus {
+  outline: 2px solid rgba(63, 81, 181, 0.65);
+  outline-offset: 2px;
+}
+
+/* ===== Header (título + nível) ===== */
+.module-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; /* evita encostar quando o título é grande */
+}
+
+.module-card__title {
+  font-weight: 700;
+  font-size: 16px; /* maior */
+  line-height: 1.28;
+}
+
+.module-card__badge {
+  background: #3f51b5;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 12px; /* maior */
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+
+/* ===== Descrição ===== */
+.module-card__desc {
+  margin: 10px 0;     /* mais espaço entre header e meta */
+  opacity: 0.9;
+  font-size: 14px;    /* maior */
+  line-height: 1.42;
+
+  /* opcional: truncar para uniformizar altura */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;  /* até 2 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== Meta (lições / duração) ===== */
+.module-card__meta {
+  display: flex;
+  gap: 10px;          /* mais espaço entre itens */
+  opacity: 0.84;
+  font-size: 12.5px;  /* sutilmente maior */
+  line-height: 1.34;
+}
+
+/* ===== Responsivo estrito: se a sidebar ficar muito estreita, volta para 1 coluna ===== */
+@media (max-width: 340px) {
+  .modules {
+    grid-template-columns: 1fr; /* 1 coluna */
+  }
+}

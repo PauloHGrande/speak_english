@@ -1,16 +1,20 @@
-<div class='card'>
-    <h2 class='title'>Pratique Inglês por Módulos</h2>
-    <p class='subtitle'>Responda corretamente para avançar</p>
-    <p class='score'>Pontuação: {{ score }}</p>
+<div class="page">
+    <!-- SIDEBAR fixa no canto esquerdo, alinhada pelo topo do card -->
+    <app-modules-menu
+            class="page__sidebar"
+            [modules]="modules"
+            [activeIndex]="activeIndex"
+            (select)="onSelectModule($event)">
+    </app-modules-menu>
 
-    <div class='avatar'>
-        <img src='assets/avatar.png' alt='Avatar'>
-    </div>
-
-    <button class='mic-btn' (click)='startListening()'>🎤 Responder</button>
-
-    <div class='panel'>
-        <p><strong>Pergunta (EN):</strong> {{ currentStep?.prompt }}</p>
-        <p><strong>Tradução (PT):</strong> {{ currentStep?.translation }}</p>
-    </div>
+    <!-- ÁREA PRINCIPAL centralizada -->
+    <main class="page__main">
+        <div class="center">
+            <div class="card">
+                <h2 class="title">Pratique Inglês por Módulos</h2>
+                <p class="subtitle">Responda corretamente para avançar</p>
+                <app-avatar></app-avatar>
+            </div>
+        </div>
+    </main>
 </div>

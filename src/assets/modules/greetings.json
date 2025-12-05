@@ -1,44 +1,24 @@
 {
-  "id": "greetings",
-  "title": "Sauda\u00e7\u00f5es",
-  "description": "Aprenda a cumprimentar em ingl\u00eas",
-  "steps": [
+  "moduleId": "greetings",
+  "title": "Cumprimentos",
+  "level": "Iniciante",
+  "dialogs": [
     {
-      "id": "step1",
-      "prompt": "How do you say 'Ol\u00e1' in English?",
-      "translation": "Ol\u00e1",
-      "expected": {
-        "answers": [
-          "hello"
-        ],
-        "alternatives": [
-          "hi",
-          "hey"
-        ]
-      },
-      "feedback": {
-        "correct": "Great!",
-        "incorrect": "Try again!"
-      }
+      "question": "Hello! How are you?",
+      "translation": "Olá! Como você está?",
+      "answer": [
+        "I am fine, thank you!"
+      ]
     },
     {
-      "id": "step2",
-      "prompt": "How do you respond to 'How are you?'",
-      "translation": "Como voc\u00ea est\u00e1?",
-      "expected": {
-        "answers": [
-          "i'm fine thank you",
-          "i am fine thank you"
-        ],
-        "alternatives": [
-          "i'm good",
-          "fine"
-        ]
-      },
-      "feedback": {
-        "correct": "Perfect!",
-        "incorrect": "Almost there!"
-      }
+      "question": "What is your name?",
+      "translation": "Qual é o seu nome?",
+      "answer": "My name is John."
+    },
+    {
+      "question": "Nice to meet you!",
+      "translation": "Prazer em conhecer você!",
+      "answer": "Nice to meet you too!"
     }
   ]
 }

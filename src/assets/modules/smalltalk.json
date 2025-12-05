@@ -1,0 +1,19 @@
+{
+  "moduleId": "smalltalk",
+  "title": "Small Talk",
+  "level": "Intermediário",
+  "dialogs": [
+    {
+      "question": "What do you do for a living?",
+      "translation": "O que você faz da vida?",
+      "answer": "I'm a software developer."
+    },
+    {
+      "question": "What are your hobbies?",
+      "translation": "Quais são seus hobbies?",
+      "answer": [
+        "I like reading."
+      ]
+    }
+  ]
+}
