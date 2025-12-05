@@ -15,14 +15,6 @@
 
 .page__sidebar {
   position: fixed;
-  top: calc(var(--card-top) + var(--sidebar-tweak));
-  left: var(--sidebar-left);
-  width: var(--sidebar-width);
-  height: calc(100vh - (var(--card-top) + var(--sidebar-bottom-offset)));
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 10;
-  scroll-behavior: smooth;
 }
 
 .page__main {

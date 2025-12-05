@@ -1,12 +1,3 @@
-
-/* ===== Sidebar ===== */
-.sidebar {
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 14px;
-  padding: 16px; /* mais respiro que 12/14 */
-  backdrop-filter: blur(4px);
-}
-
 /* Título */
 .sidebar__title {
   margin: 0 0 10px 0; /* mais espaço abaixo do título */
@@ -19,7 +10,7 @@
 .modules {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr)); /* sempre duas colunas */
-  column-gap: 18px;  /* espaço horizontal entre colunas */
+  column-gap: 40px;  /* espaço horizontal entre colunas */
   row-gap: 18px;     /* espaço vertical entre linhas */
 }
 
