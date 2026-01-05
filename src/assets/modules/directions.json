@@ -1,0 +1,82 @@
+{
+  "moduleId": "directions",
+  "title": "Directions & Places",
+  "level": "Intermediário",
+  "dialogs": [
+    {
+      "question": "Excuse me, where is the nearest bank?",
+      "translation": "Com licença, onde fica o banco mais próximo?",
+      "answer": ["It is", "Go straight", "Turn left", "It's"]
+    },
+    {
+      "question": "How do I get to the train station?",
+      "translation": "Como eu chego à estação de trem?",
+      "answer": ["Go straight", "Turn", "Take the", "Walk"]
+    },
+    {
+      "question": "Is it far from here?",
+      "translation": "É longe daqui?",
+      "answer": ["No, it isn't", "Yes, it is", "About", "Not very far"]
+    },
+    {
+      "question": "Can you show me on the map?",
+      "translation": "Você pode me mostrar no mapa?",
+      "answer": ["Sure", "Of course", "Yes", "Here"]
+    },
+    {
+      "question": "Should I turn left or right?",
+      "translation": "Devo virar à esquerda ou à direita?",
+      "answer": ["Turn left", "Turn right", "Go left", "Go right"]
+    },
+    {
+      "question": "Where is the nearest pharmacy?",
+      "translation": "Onde fica a farmácia mais próxima?",
+      "answer": ["It is", "On the", "Next to", "Across from"]
+    },
+    {
+      "question": "How far is it?",
+      "translation": "Quão longe é?",
+      "answer": ["About", "Around", "It is", "Approximately"]
+    },
+    {
+      "question": "Can I walk there?",
+      "translation": "Posso ir a pé?",
+      "answer": ["Yes, you can", "It's too far", "Yes", "No, take a"]
+    },
+    {
+      "question": "Is there a hospital nearby?",
+      "translation": "Há um hospital por perto?",
+      "answer": ["Yes, there is", "No, there isn't", "Yes", "No"]
+    },
+    {
+      "question": "Where is the bus stop?",
+      "translation": "Onde é o ponto de ônibus?",
+      "answer": ["It is", "Over there", "On the", "Around the corner"]
+    },
+    {
+      "question": "Which way should I go?",
+      "translation": "Por onde devo ir?",
+      "answer": ["Go", "Turn", "This way", "That way"]
+    },
+    {
+      "question": "Is this the right way?",
+      "translation": "Este é o caminho certo?",
+      "answer": ["Yes, it is", "No, go", "Yes", "No"]
+    },
+    {
+      "question": "How many blocks away is it?",
+      "translation": "Quantos quarteirões de distância é?",
+      "answer": ["It is", "About", "Two blocks", "Three blocks"]
+    },
+    {
+      "question": "Is there a supermarket around here?",
+      "translation": "Há um supermercado por aqui?",
+      "answer": ["Yes, there is", "No", "Yes, on", "Around the corner"]
+    },
+    {
+      "question": "Where is the nearest ATM?",
+      "translation": "Onde fica o caixa eletrônico mais próximo?",
+      "answer": ["It is", "Inside the", "Next to", "Over there"]
+    }
+  ]
+}

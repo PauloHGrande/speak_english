@@ -1,0 +1,82 @@
+{
+  "moduleId": "shopping",
+  "title": "Shopping & Money",
+  "level": "Iniciante",
+  "dialogs": [
+    {
+      "question": "How much does this cost?",
+      "translation": "Quanto custa isto?",
+      "answer": ["It costs", "It is", "The price is"]
+    },
+    {
+      "question": "Can I pay by credit card?",
+      "translation": "Posso pagar com cartão de crédito?",
+      "answer": ["Yes, you can", "Of course", "Sure", "Yes"]
+    },
+    {
+      "question": "Do you have this in a different size?",
+      "translation": "Você tem isso em um tamanho diferente?",
+      "answer": ["Yes, we do", "Let me check", "What size do you need", "No, sorry"]
+    },
+    {
+      "question": "Can I try this on?",
+      "translation": "Posso experimentar isto?",
+      "answer": ["Yes, of course", "Sure", "The fitting room is", "Yes, you can"]
+    },
+    {
+      "question": "Is this on sale?",
+      "translation": "Isso está em promoção?",
+      "answer": ["Yes, it is", "No, it isn't", "It's", "Yes"]
+    },
+    {
+      "question": "Where is the cashier?",
+      "translation": "Onde é o caixa?",
+      "answer": ["It is", "Over there", "It's", "The cashier is"]
+    },
+    {
+      "question": "Do you have a receipt?",
+      "translation": "Você tem o recibo?",
+      "answer": ["Yes, I do", "No, I don't", "Here it is", "Yes, here"]
+    },
+    {
+      "question": "Can I get a refund?",
+      "translation": "Posso ter um reembolso?",
+      "answer": ["Yes, you can", "With a receipt", "No, sorry", "Yes"]
+    },
+    {
+      "question": "What is your return policy?",
+      "translation": "Qual é a sua política de devolução?",
+      "answer": ["You can return", "We accept returns", "Within", "Our policy is"]
+    },
+    {
+      "question": "Do you accept cash?",
+      "translation": "Você aceita dinheiro?",
+      "answer": ["Yes, we do", "Of course", "Yes", "Cash only"]
+    },
+    {
+      "question": "Where can I find the shoes?",
+      "translation": "Onde posso encontrar os sapatos?",
+      "answer": ["They are", "On the", "In the", "Over there"]
+    },
+    {
+      "question": "Do you have this in another color?",
+      "translation": "Você tem isso em outra cor?",
+      "answer": ["Yes, we do", "What color", "Let me check", "No, sorry"]
+    },
+    {
+      "question": "Can you give me a discount?",
+      "translation": "Você pode me dar um desconto?",
+      "answer": ["Sorry, no", "The price is fixed", "Maybe", "Let me ask"]
+    },
+    {
+      "question": "What time do you close?",
+      "translation": "Que horas você fecha?",
+      "answer": ["We close at", "At", "We are open until"]
+    },
+    {
+      "question": "Is there a fitting room?",
+      "translation": "Há um provador?",
+      "answer": ["Yes, over there", "Yes, it is", "Yes, there is", "Right there"]
+    }
+  ]
+}

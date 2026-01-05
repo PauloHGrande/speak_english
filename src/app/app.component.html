@@ -1,20 +1,27 @@
 <div class="page">
-    <!-- SIDEBAR fixa no canto esquerdo, alinhada pelo topo do card -->
-    <app-modules-menu
-            class="page__sidebar"
-            [modules]="modules"
-            [activeIndex]="activeIndex"
-            (select)="onSelectModule($event)">
-    </app-modules-menu>
-
     <!-- ÁREA PRINCIPAL centralizada -->
     <main class="page__main">
-        <div class="left">
+        <div class="main-container">
             <div class="card">
-                <h2 class="title">Pratique Inglês por Módulos</h2>
-                <p class="subtitle">Responda corretamente para avançar</p>
-                <app-avatar></app-avatar>
+                <div class="card__header">
+                    <div class="card__icon">🎯</div>
+                    <div class="card__title-group">
+                        <h2 class="title">Pratique Inglês por Módulos</h2>
+                        <p class="subtitle">Responda corretamente para avançar</p>
+                    </div>
+                </div>
+                <div class="card__content">
+                    <app-avatar></app-avatar>
+                </div>
             </div>
+
+            <!-- MODULE CARDS BELOW -->
+            <app-modules-menu
+                    class="page__modules"
+                    [modules]="modules"
+                    [activeIndex]="activeIndex"
+                    (select)="onSelectModule($event)">
+            </app-modules-menu>
         </div>
     </main>
 </div>

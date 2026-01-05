@@ -1,0 +1,82 @@
+{
+  "moduleId": "work-school",
+  "title": "Work & School",
+  "level": "Intermediário",
+  "dialogs": [
+    {
+      "question": "What do you do for a living?",
+      "translation": "O que você faz para viver?",
+      "answer": ["I am a", "I'm a", "I work as a", "I work in"]
+    },
+    {
+      "question": "Where do you work?",
+      "translation": "Onde você trabalha?",
+      "answer": ["I work at", "I work for", "At", "For"]
+    },
+    {
+      "question": "Do you like your job?",
+      "translation": "Você gosta do seu trabalho?",
+      "answer": ["Yes, I do", "Yes, I love it", "No, not really", "It's okay"]
+    },
+    {
+      "question": "How long have you been working there?",
+      "translation": "Há quanto tempo você trabalha lá?",
+      "answer": ["I have been working there for", "For", "Since", "About"]
+    },
+    {
+      "question": "What are you studying?",
+      "translation": "O que você está estudando?",
+      "answer": ["I am studying", "I'm studying", "I study"]
+    },
+    {
+      "question": "What is your major?",
+      "translation": "Qual é a sua especialização?",
+      "answer": ["My major is", "I'm majoring in", "I study"]
+    },
+    {
+      "question": "Do you go to school?",
+      "translation": "Você vai à escola?",
+      "answer": ["Yes, I do", "No, I don't", "I go to university", "Not anymore"]
+    },
+    {
+      "question": "What grade are you in?",
+      "translation": "Em que série você está?",
+      "answer": ["I am in", "I'm in", "I'm in grade"]
+    },
+    {
+      "question": "Do you have any colleagues?",
+      "translation": "Você tem colegas?",
+      "answer": ["Yes, I do", "Yes, many", "A few", "Not many"]
+    },
+    {
+      "question": "What time does your work start?",
+      "translation": "Que horas começa o seu trabalho?",
+      "answer": ["It starts at", "At", "My work starts at"]
+    },
+    {
+      "question": "Do you work full-time or part-time?",
+      "translation": "Você trabalha em tempo integral ou meio período?",
+      "answer": ["I work full-time", "I work part-time", "Full-time", "Part-time"]
+    },
+    {
+      "question": "What subject do you like the most?",
+      "translation": "Qual matéria você mais gosta?",
+      "answer": ["I like", "My favorite subject is", "I enjoy", "I prefer"]
+    },
+    {
+      "question": "Do you have a lot of homework?",
+      "translation": "Você tem muita lição de casa?",
+      "answer": ["Yes, I do", "No, not really", "Sometimes", "A lot"]
+    },
+    {
+      "question": "What do you want to be when you grow up?",
+      "translation": "O que você quer ser quando crescer?",
+      "answer": ["I want to be a", "I want to be", "I'd like to be"]
+    },
+    {
+      "question": "Do you enjoy your studies?",
+      "translation": "Você gosta dos seus estudos?",
+      "answer": ["Yes, I do", "Yes, very much", "No, not really", "Most of the time"]
+    }
+  ]
+}

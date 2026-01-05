@@ -70,6 +70,33 @@ export class VoiceService {
     this.index = 0;
   }
 
+  /** Retorna o índice atual (1-based para UI) */
+  getCurrentQuestionNumber(): number {
+    return this.index;
+  }
+
+  /** Retorna o total de perguntas no módulo */
+  getTotalQuestions(): number {
+    return this.dialogs.length;
+  }
+
+  /** Pula para a próxima pergunta sem validar */
+  skipQuestion(): Dialog | null {
+    if (this.index < this.dialogs.length) {
+      this.index++;
+      return this.getNextDialog();
+    }
+    return null;
+  }
+
+  /** Retorna a pergunta atual sem avançar */
+  getCurrentDialog(): Dialog | null {
+    if (this.index > 0 && this.index <= this.dialogs.length) {
+      return this.dialogs[this.index - 1];
+    }
+    return null;
+  }
+
   /** Fallback local para não ficar vazio se assets falhar (opcional) */
   private seedFallback() {
     this.dialogs = [
@@ -137,27 +164,61 @@ export class VoiceService {
   private pickEnglishFemaleVoice() {
     try {
       const voices = speechSynthesis.getVoices();
+
+      // Filter for English voices only
       const candidates = voices.filter((v) =>
         (v.lang || '').toLowerCase().startsWith('en')
       );
 
-      const preferredNames = [
+      // Preferred female voice names (in priority order)
+      const preferredFemaleNames = [
         'Google UK English Female',
-        'Google US English',
+        'Google US English Female',
         'Microsoft Zira',
-        'Zira',
+        'Zira Desktop',
+        'Microsoft Aria',
         'Samantha',
+        'Karen',
+        'Moira',
+        'Victoria',
+        'Fiona',
+        'female' // Generic female identifier
       ];
 
+      // First, try to find a voice by preferred name
       let match = candidates.find((v) =>
-        preferredNames.some((p) =>
+        preferredFemaleNames.some((p) =>
           (v.name || '').toLowerCase().includes(p.toLowerCase())
         )
       );
 
-      if (!match && candidates.length) match = candidates[0];
+      // If no match found by name, filter for female voices
+      if (!match) {
+        const femaleVoices = candidates.filter(v => {
+          const name = (v.name || '').toLowerCase();
+          // Most female voices have these identifiers
+          return name.includes('female') ||
+                 name.includes('woman') ||
+                 name.includes('zira') ||
+                 name.includes('aria');
+        });
+
+        if (femaleVoices.length) {
+          match = femaleVoices[0];
+        }
+      }
+
+      // Fallback to first English voice if no female voice found
+      if (!match && candidates.length) {
+        match = candidates[0];
+      }
 
       this.preferredVoice = match || null;
+
+      // Log selected voice for debugging
+      if (this.preferredVoice) {
+        console.log('Selected voice:', this.preferredVoice.name, '(lang:', this.preferredVoice.lang + ')');
+      }
     } catch {
       this.preferredVoice = null;
     }

@@ -1,16 +1,23 @@
-/* Título */
-.sidebar__title {
-  margin: 0 0 10px 0; /* mais espaço abaixo do título */
-  font-size: 17px;    /* sutilmente maior */
-  font-weight: 700;
-  color: #fff;
+/* Container */
+.sidebar {
+  width: 100%;
 }
 
-/* ===== GRID: duas colunas fixas com espaçamento confortável ===== */
+/* Título */
+.sidebar__title {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+/* ===== GRID: quatro colunas com espaçamento confortável ===== */
 .modules {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* sempre duas colunas */
-  column-gap: 40px;  /* espaço horizontal entre colunas */
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* quatro colunas */
+  column-gap: 20px;  /* espaço horizontal entre colunas */
   row-gap: 18px;     /* espaço vertical entre linhas */
 }
 
@@ -104,9 +111,62 @@
   line-height: 1.34;
 }
 
-/* ===== Responsivo estrito: se a sidebar ficar muito estreita, volta para 1 coluna ===== */
-@media (max-width: 340px) {
+/* ===== Responsivo ===== */
+@media (max-width: 1400px) {
   .modules {
-    grid-template-columns: 1fr; /* 1 coluna */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 colunas em telas médias */
+  }
+}
+
+@media (max-width: 968px) {
+  .sidebar__title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .modules {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 colunas em tablets */
+    column-gap: 16px;
+    row-gap: 16px;
+  }
+
+  .module-card {
+    min-height: 100px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sidebar__title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .modules {
+    grid-template-columns: 1fr; /* 1 coluna em mobile */
+    row-gap: 12px;
+  }
+
+  .module-card {
+    min-height: 90px;
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .module-card__title {
+    font-size: 15px;
+  }
+
+  .module-card__badge {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .module-card__desc {
+    font-size: 13px;
+  }
+
+  .module-card__meta {
+    font-size: 12px;
   }
 }

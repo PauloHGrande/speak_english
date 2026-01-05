@@ -1,7 +1,60 @@
-body{margin:0;background:linear-gradient(135deg,#2b2d42,#5b9cff,#a15bff);background-size:400% 400%;animation:bgMove 18s ease infinite;color:#edf2f4;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
-@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.center{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
-.card{width:600px;max-width:92vw;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border-radius:22px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
-.title{font-weight:600;font-size:22px;margin-bottom:10px}
-.subtitle{opacity:.8;margin-bottom:20px}
-.score{font-size:18px;font-weight:600;margin-bottom:10px}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #1a1b26, #2b2d42, #4a5568, #5b9cff, #a15bff);
+  background-size: 400% 400%;
+  animation: bgMove 20s ease infinite;
+  color: #edf2f4;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+@keyframes bgMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(91, 156, 255, 0.3);
+  color: #fff;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #5b9cff;
+  outline-offset: 2px;
+}

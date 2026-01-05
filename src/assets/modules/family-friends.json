@@ -1,0 +1,82 @@
+{
+  "moduleId": "family-friends",
+  "title": "Family & Friends",
+  "level": "Iniciante",
+  "dialogs": [
+    {
+      "question": "Do you have any brothers or sisters?",
+      "translation": "Você tem irmãos ou irmãs?",
+      "answer": ["Yes, I have", "No, I don't", "I have", "I am an only child"]
+    },
+    {
+      "question": "How many people are in your family?",
+      "translation": "Quantas pessoas há na sua família?",
+      "answer": ["There are", "I have", "We are"]
+    },
+    {
+      "question": "What does your father do?",
+      "translation": "O que seu pai faz?",
+      "answer": ["He is a", "He works as a", "He is", "My father is"]
+    },
+    {
+      "question": "What does your mother do?",
+      "translation": "O que sua mãe faz?",
+      "answer": ["She is a", "She works as a", "She is", "My mother is"]
+    },
+    {
+      "question": "Are you married?",
+      "translation": "Você é casado?",
+      "answer": ["Yes, I am", "No, I am not", "No, I'm single", "Yes"]
+    },
+    {
+      "question": "Do you have children?",
+      "translation": "Você tem filhos?",
+      "answer": ["Yes, I have", "No, I don't", "I have", "Not yet"]
+    },
+    {
+      "question": "Where does your family live?",
+      "translation": "Onde sua família mora?",
+      "answer": ["They live in", "My family lives in", "In"]
+    },
+    {
+      "question": "Do you have a best friend?",
+      "translation": "Você tem um melhor amigo?",
+      "answer": ["Yes, I do", "Yes, I have", "No, I don't"]
+    },
+    {
+      "question": "How often do you see your friends?",
+      "translation": "Com que frequência você vê seus amigos?",
+      "answer": ["I see them", "Every", "Once a", "Twice a", "Often"]
+    },
+    {
+      "question": "What do you do with your friends?",
+      "translation": "O que você faz com seus amigos?",
+      "answer": ["We", "I", "We usually", "We like to"]
+    },
+    {
+      "question": "Do you live with your parents?",
+      "translation": "Você mora com seus pais?",
+      "answer": ["Yes, I do", "No, I don't", "I live alone", "I live with"]
+    },
+    {
+      "question": "What is your father's name?",
+      "translation": "Qual é o nome do seu pai?",
+      "answer": ["His name is", "It is", "It's"]
+    },
+    {
+      "question": "What is your mother's name?",
+      "translation": "Qual é o nome da sua mãe?",
+      "answer": ["Her name is", "It is", "It's"]
+    },
+    {
+      "question": "How old are your parents?",
+      "translation": "Quantos anos têm seus pais?",
+      "answer": ["My father is", "My mother is", "They are"]
+    },
+    {
+      "question": "Do you get along well with your family?",
+      "translation": "Você se dá bem com sua família?",
+      "answer": ["Yes, I do", "Yes, very well", "We get along well", "Most of the time"]
+    }
+  ]
+}

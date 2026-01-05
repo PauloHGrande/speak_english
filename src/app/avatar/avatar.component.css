@@ -6,10 +6,69 @@
   gap: 18px;
 }
 
+.header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 4px;
+  gap: 16px;
+}
+
+.progress {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
 .avatar-wrap {
   position: relative;
   height: 340px;
   width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glow effect element */
+.avatar-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.avatar-glow.glow-listening {
+  opacity: 1;
+  background: radial-gradient(circle, rgba(239, 35, 60, 0.3) 0%, transparent 70%);
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+.avatar-glow.glow-speaking {
+  opacity: 1;
+  background: radial-gradient(circle, rgba(63, 81, 181, 0.3) 0%, transparent 70%);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.7;
+  }
 }
 
 .avatar {
@@ -17,17 +76,31 @@
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
   animation: breathe 4s ease-in-out infinite;
   border-radius: 12px;
+  transition: filter 0.3s ease;
+}
+
+/* Enhanced breathing when active */
+.avatar.active {
+  animation: breatheActive 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.4));
+}
+
+/* Head/body movement during speech */
+.avatar.speaking-anim {
+  animation: breatheActive 2.5s ease-in-out infinite, speakMove 3s ease-in-out infinite;
 }
 
 .mouth {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 70px;
-  width: 58px;
-  height: 12px;
-  background: #111;
-  border-radius: 6px;
+  bottom: 184px;
+  width: 26px;
+  height: 4px;
+  background: #FF8A80;
+  border-radius: 3px;
+  opacity: 0.9;
+  transform-origin: center center;
 }
 
 .mouth.speaking {
@@ -35,41 +108,122 @@
 }
 
 @keyframes talk {
-  0% {
-    height: 10px;
+  0%, 100% {
+    height: 4px;
+    transform: translateX(-50%) scaleY(1);
   }
   50% {
-    height: 26px;
+    height: 14px;
+    transform: translateX(-50%) scaleY(1.2);
   }
-  100% {
-    height: 10px;
+}
+
+/* Default calm breathing animation */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Enhanced breathing when avatar is active (listening or speaking) */
+@keyframes breatheActive {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+/* Subtle head/body movements during speech */
+@keyframes speakMove {
+  0%, 100% {
+    transform: scale(1.04) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.04) rotate(-0.5deg) translateX(-2px);
+  }
+  50% {
+    transform: scale(1.04) rotate(0deg) translateX(0);
+  }
+  75% {
+    transform: scale(1.04) rotate(0.5deg) translateX(2px);
   }
 }
 
 .controls {
   margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.mic {
+.btn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #ef233c;
+  gap: 8px;
   color: #fff;
   border: none;
   border-radius: 999px;
   padding: 12px 20px;
   cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.mic:hover {
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background: #ef233c;
+}
+
+.btn--primary:hover {
   background: #d90429;
 }
 
-.mic.listening {
+.btn--primary.listening {
   animation: pulse 1.2s infinite;
+  background: #ff4458;
+}
+
+.btn--replay {
+  background: #3f51b5;
+  padding: 12px 18px;
+}
+
+.btn--replay:hover {
+  background: #303f9f;
+}
+
+.btn--skip {
+  background: #757575;
+  padding: 12px 18px;
+}
+
+.btn--skip:hover {
+  background: #616161;
+}
+
+.btn--secondary {
+  background: #3f51b5;
+  margin: 10px auto;
+}
+
+.btn--secondary:hover {
+  background: #303f9f;
 }
 
 @keyframes pulse {
@@ -112,32 +266,136 @@
 }
 
 .score {
-  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
   color: #fff;
 }
 
-/* Linhas comuns do painel: seguem como antes */
+/* Panel feedback animations */
+.feedback-row {
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.feedback--success {
+  color: #4caf50;
+  font-weight: 700;
+  animation: successPulse 0.6s ease-out;
+}
+
+.feedback--error {
+  color: #ff5252;
+  font-weight: 700;
+}
+
+@keyframes successPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Panel row styles */
 .panel .row {
   display: flex;
-  justify-content: space-between; /* ou seu valor atual */
+  justify-content: space-between;
   padding: 6px 4px;
 }
 
-/* SOMENTE a linha do botão centralizada */
 .panel .row.row--center {
   justify-content: center;
 }
 
-/* Botão centralizado por largura intrínseca */
-.panel .row.row--center .mic {
-  margin: 10px auto;
+/* Responsive Design */
+@media (max-width: 640px) {
+  .avatar-wrap {
+    height: 280px;
+    width: 240px;
+  }
+
+  .avatar-glow {
+    width: 110%;
+    height: 110%;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .btn span {
+    display: none;
+  }
+
+  .btn--primary span,
+  .btn--secondary span {
+    display: inline;
+  }
+
+  .controls {
+    gap: 8px;
+  }
+
+  .header-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .progress {
+    font-size: 13px;
+    padding: 5px 12px;
+  }
+
+  .score {
+    font-size: 16px;
+  }
+
+  .panel {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .panel .row {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .value {
+    font-size: 14px;
+  }
 }
 
-.mic.mic--secondary {
-  background: #3f51b5; /* azul */
-  margin-left: 10px;
-}
+@media (max-width: 480px) {
+  .avatar-wrap {
+    height: 240px;
+    width: 200px;
+  }
 
-.mic.mic--secondary:hover {
-  background: #303f9f;
+  .avatar-glow {
+    width: 115%;
+    height: 115%;
+  }
+
+  .btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
 }

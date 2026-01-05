@@ -1,17 +1,82 @@
 {
   "moduleId": "travel",
-  "title": "Viagem",
+  "title": "Travel & Transportation",
   "level": "Intermediário",
   "dialogs": [
     {
       "question": "Where is the check-in counter?",
       "translation": "Onde fica o balcão de check-in?",
-      "answer": "It's over there, next to Gate 12."
+      "answer": ["It is", "It's over there", "Over there", "Next to"]
+    },
+    {
+      "question": "What time does the flight leave?",
+      "translation": "Que horas o voo parte?",
+      "answer": ["It leaves at", "At", "The flight leaves at"]
     },
     {
       "question": "Do you have any available rooms?",
       "translation": "Vocês têm algum quarto disponível?",
-      "answer": "Yes, we have a double room."
+      "answer": ["Yes, we do", "Yes, we have", "No, sorry", "Let me check"]
+    },
+    {
+      "question": "How much is a ticket?",
+      "translation": "Quanto custa uma passagem?",
+      "answer": ["It costs", "It is", "The ticket is", "About"]
+    },
+    {
+      "question": "Where is the baggage claim?",
+      "translation": "Onde é a retirada de bagagem?",
+      "answer": ["It is", "Over there", "Downstairs", "Follow the signs"]
+    },
+    {
+      "question": "Can I see your passport, please?",
+      "translation": "Posso ver seu passaporte, por favor?",
+      "answer": ["Yes, here it is", "Of course", "Sure", "Here you are"]
+    },
+    {
+      "question": "What is the boarding time?",
+      "translation": "Qual é o horário de embarque?",
+      "answer": ["The boarding time is", "At", "It is", "Check your ticket"]
+    },
+    {
+      "question": "Do I need a visa?",
+      "translation": "Eu preciso de visto?",
+      "answer": ["Yes, you do", "No, you don't", "Yes", "No", "It depends"]
+    },
+    {
+      "question": "How do I get to the city center?",
+      "translation": "Como eu chego ao centro da cidade?",
+      "answer": ["Take the", "You can take", "By taxi", "By bus"]
+    },
+    {
+      "question": "Is breakfast included?",
+      "translation": "O café da manhã está incluído?",
+      "answer": ["Yes, it is", "No, it isn't", "Yes", "No"]
+    },
+    {
+      "question": "Where is my gate?",
+      "translation": "Onde é o meu portão?",
+      "answer": ["It is", "Gate", "Your gate is", "Check the board"]
+    },
+    {
+      "question": "Can I have a window seat?",
+      "translation": "Posso ter um assento na janela?",
+      "answer": ["Yes, of course", "Let me check", "Sorry, no", "Sure"]
+    },
+    {
+      "question": "How long is the flight?",
+      "translation": "Quanto tempo dura o voo?",
+      "answer": ["It is", "About", "Around", "The flight is"]
+    },
+    {
+      "question": "Do you have anything to declare?",
+      "translation": "Você tem algo a declarar?",
+      "answer": ["No, I don't", "Yes, I have", "No", "Nothing"]
+    },
+    {
+      "question": "What time is check-out?",
+      "translation": "Que horas é o check-out?",
+      "answer": ["Check-out is at", "At", "It is at", "Eleven AM"]
     }
   ]
 }

@@ -1,24 +1,82 @@
 {
   "moduleId": "greetings",
-  "title": "Cumprimentos",
+  "title": "Greetings & Introductions",
   "level": "Iniciante",
   "dialogs": [
     {
       "question": "Hello! How are you?",
       "translation": "Olá! Como você está?",
-      "answer": [
-        "I am fine, thank you!"
-      ]
+      "answer": ["I am fine, thank you", "I'm fine, thank you", "I am good, thanks"]
     },
     {
       "question": "What is your name?",
       "translation": "Qual é o seu nome?",
-      "answer": "My name is John."
+      "answer": ["My name is", "I am", "I'm"]
     },
     {
       "question": "Nice to meet you!",
-      "translation": "Prazer em conhecer você!",
-      "answer": "Nice to meet you too!"
+      "translation": "Prazer em conhecê-lo!",
+      "answer": ["Nice to meet you too", "Pleased to meet you too", "Nice to meet you as well"]
+    },
+    {
+      "question": "Where are you from?",
+      "translation": "De onde você é?",
+      "answer": ["I am from", "I'm from", "I come from"]
+    },
+    {
+      "question": "How old are you?",
+      "translation": "Quantos anos você tem?",
+      "answer": ["I am", "I'm"]
+    },
+    {
+      "question": "What do you do?",
+      "translation": "O que você faz? (profissão)",
+      "answer": ["I am a", "I'm a", "I work as a"]
+    },
+    {
+      "question": "Do you speak English?",
+      "translation": "Você fala inglês?",
+      "answer": ["Yes, I do", "Yes, I speak English", "A little"]
+    },
+    {
+      "question": "How do you spell your name?",
+      "translation": "Como se soletra seu nome?",
+      "answer": ["It is spelled", "It's spelled", "My name is spelled"]
+    },
+    {
+      "question": "Can you repeat that, please?",
+      "translation": "Pode repetir, por favor?",
+      "answer": ["Sure", "Of course", "Yes, of course"]
+    },
+    {
+      "question": "Good morning! How are you today?",
+      "translation": "Bom dia! Como você está hoje?",
+      "answer": ["Good morning! I am fine", "Good morning! I'm good", "Morning! I'm well"]
+    },
+    {
+      "question": "See you later!",
+      "translation": "Até logo!",
+      "answer": ["See you later", "See you", "Goodbye"]
+    },
+    {
+      "question": "Have a nice day!",
+      "translation": "Tenha um bom dia!",
+      "answer": ["You too", "Thank you, you too", "Thanks, you as well"]
+    },
+    {
+      "question": "What is your phone number?",
+      "translation": "Qual é o seu número de telefone?",
+      "answer": ["My phone number is", "It is", "It's"]
+    },
+    {
+      "question": "Where do you live?",
+      "translation": "Onde você mora?",
+      "answer": ["I live in", "I live at"]
+    },
+    {
+      "question": "How long have you been learning English?",
+      "translation": "Há quanto tempo você está aprendendo inglês?",
+      "answer": ["I have been learning for", "I've been learning for", "For"]
     }
   ]
 }

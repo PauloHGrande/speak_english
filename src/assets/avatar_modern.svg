@@ -1,0 +1,150 @@
+<svg width="280" height="340" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for blonde hair -->
+    <linearGradient id="hairGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F9E4B7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#E8C87E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4A76A;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Gradient for face -->
+    <radialGradient id="faceGradient" cx="50%" cy="40%">
+      <stop offset="0%" style="stop-color:#FFE0CD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCCB3;stop-opacity:1" />
+    </radialGradient>
+
+    <!-- Shadow for depth -->
+    <filter id="softShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle with gradient -->
+  <circle cx="140" cy="120" r="100" fill="#FFF9E6" opacity="0.4"/>
+
+  <!-- Neck -->
+  <ellipse cx="140" cy="200" rx="28" ry="35" fill="#FFCCB3"/>
+
+  <!-- Shoulders/Clothing -->
+  <path d="M 80 220 Q 110 210 140 210 Q 170 210 200 220 L 210 280 Q 210 290 200 300 L 80 300 Q 70 290 70 280 Z" fill="#5C6BC0"/>
+  <ellipse cx="140" cy="220" rx="60" ry="25" fill="#3F51B5"/>
+
+  <!-- Collar detail -->
+  <path d="M 110 215 Q 140 220 170 215" stroke="#7986CB" stroke-width="2" fill="none"/>
+
+  <!-- Face -->
+  <ellipse cx="140" cy="125" rx="55" ry="65" fill="url(#faceGradient)" filter="url(#softShadow)"/>
+
+  <!-- Ears -->
+  <ellipse cx="85" cy="125" rx="10" ry="15" fill="#FFCCB3"/>
+  <ellipse cx="195" cy="125" rx="10" ry="15" fill="#FFCCB3"/>
+
+  <!-- Hair back (long, flowing blonde) -->
+  <ellipse cx="140" cy="110" rx="70" ry="85" fill="url(#hairGradient)"/>
+
+  <!-- Long hair strands (left side) -->
+  <path d="M 75 110 Q 65 150 68 200 Q 70 250 75 300" stroke="url(#hairGradient)" stroke-width="28" fill="none" stroke-linecap="round" opacity="0.95"/>
+  <path d="M 85 120 Q 78 160 80 210 Q 82 260 85 310" stroke="url(#hairGradient)" stroke-width="22" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Long hair strands (right side) -->
+  <path d="M 205 110 Q 215 150 212 200 Q 210 250 205 300" stroke="url(#hairGradient)" stroke-width="28" fill="none" stroke-linecap="round" opacity="0.95"/>
+  <path d="M 195 120 Q 202 160 200 210 Q 198 260 195 310" stroke="url(#hairGradient)" stroke-width="22" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Hair front (bangs) - soft and natural blonde -->
+  <path d="M 85 85 Q 90 60 110 55 Q 125 52 140 50 Q 155 52 170 55 Q 190 60 195 85 L 190 90 Q 175 70 160 67 Q 140 65 120 67 Q 105 70 90 90 Z" fill="url(#hairGradient)"/>
+
+  <!-- Hair strands detail (front) - lighter blonde highlights -->
+  <path d="M 95 80 Q 105 65 115 62" stroke="#F5D99D" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <path d="M 140 58 L 140 85" stroke="#F5D99D" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <path d="M 165 62 Q 175 65 185 80" stroke="#F5D99D" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+  <!-- Side hair -->
+  <path d="M 88 95 Q 80 110 78 130" stroke="url(#hairGradient)" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <path d="M 192 95 Q 200 110 202 130" stroke="url(#hairGradient)" stroke-width="16" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyebrows (lighter for blonde) -->
+  <path d="M 108 105 Q 118 102 128 103" stroke="#C9A86A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 152 103 Q 162 102 172 105" stroke="#C9A86A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyes (larger and more expressive) -->
+  <ellipse cx="118" cy="120" rx="14" ry="16" fill="white"/>
+  <ellipse cx="162" cy="120" rx="14" ry="16" fill="white"/>
+
+  <!-- Iris (beautiful blue) -->
+  <circle cx="118" cy="122" r="10" fill="#2196F3"/>
+  <circle cx="162" cy="122" r="10" fill="#2196F3"/>
+
+  <!-- Inner iris detail -->
+  <circle cx="118" cy="122" r="7" fill="#1976D2"/>
+  <circle cx="162" cy="122" r="7" fill="#1976D2"/>
+
+  <!-- Pupils -->
+  <circle cx="119" cy="121" r="4.5" fill="#0D47A1"/>
+  <circle cx="163" cy="121" r="4.5" fill="#0D47A1"/>
+
+  <!-- Eye shine (multiple highlights for depth) -->
+  <circle cx="115" cy="118" r="3" fill="white" opacity="0.9"/>
+  <circle cx="120" cy="123" r="1.5" fill="white" opacity="0.7"/>
+  <circle cx="159" cy="118" r="3" fill="white" opacity="0.9"/>
+  <circle cx="164" cy="123" r="1.5" fill="white" opacity="0.7"/>
+
+  <!-- Blinking eyelids -->
+  <ellipse class="eyelid-left" cx="118" cy="120" rx="14" ry="16" fill="#FFCCB3">
+    <animate attributeName="ry" values="0;0;0;16;0;0;0;0;0;0;0;16;0" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="104;104;104;120;104;104;104;104;104;104;104;120;104" dur="8s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse class="eyelid-right" cx="162" cy="120" rx="14" ry="16" fill="#FFCCB3">
+    <animate attributeName="ry" values="0;0;0;16;0;0;0;0;0;0;0;16;0" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="104;104;104;120;104;104;104;104;104;104;104;120;104" dur="8s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- Upper eyelids (subtle) -->
+  <path d="M 104 114 Q 118 110 132 114" stroke="#C9A86A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M 148 114 Q 162 110 176 114" stroke="#C9A86A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyelashes (delicate) -->
+  <path d="M 106 113 Q 105 110 106 107" stroke="#C9A86A" stroke-width="1.2" fill="none"/>
+  <path d="M 112 111 Q 112 108 113 105" stroke="#C9A86A" stroke-width="1.2" fill="none"/>
+  <path d="M 124 111 Q 125 108 126 105" stroke="#C9A86A" stroke-width="1.2" fill="none"/>
+  <path d="M 130 113 Q 131 110 132 107" stroke="#C9A86A" stroke-width="1.2" fill="none"/>
+
+  <path d="M 150 113 Q 149 110 148 107" stroke="#C9A86A" stroke-width="1.2" fill="none"/>
+  <path d="M 156 111 Q 156 108 155 105" stroke="#C9A86A" stroke-width="1.2" fill="none"/>
+  <path d="M 168 111 Q 167 108 166 105" stroke="#C9A86A" stroke-width="1.2" fill="none"/>
+  <path d="M 174 113 Q 173 110 172 107" stroke="#C9A86A" stroke-width="1.2" fill="none"/>
+
+  <!-- Lower lashes -->
+  <path d="M 108 127 Q 108 129 107 130" stroke="#C9A86A" stroke-width="1" fill="none"/>
+  <path d="M 128 127 Q 129 129 130 130" stroke="#C9A86A" stroke-width="1" fill="none"/>
+  <path d="M 152 127 Q 151 129 150 130" stroke="#C9A86A" stroke-width="1" fill="none"/>
+  <path d="M 172 127 Q 173 129 174 130" stroke="#C9A86A" stroke-width="1" fill="none"/>
+
+  <!-- Nose (delicate) -->
+  <path d="M 140 128 Q 140 140 140 145" stroke="#FFBFA3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="137" cy="145" rx="2.5" ry="2" fill="#FFBFA3"/>
+  <ellipse cx="143" cy="145" rx="2.5" ry="2" fill="#FFBFA3"/>
+
+  <!-- Lips (soft and natural) -->
+  <path d="M 127 156 Q 140 160 153 156" stroke="#FF8A80" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 127 156 Q 140 153 153 156" stroke="#FFC1C1" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Blush (subtle) -->
+  <ellipse cx="102" cy="138" rx="12" ry="8" fill="#FFB3BA" opacity="0.35"/>
+  <ellipse cx="178" cy="138" rx="12" ry="8" fill="#FFB3BA" opacity="0.35"/>
+
+  <!-- Chin shadow (for depth) -->
+  <ellipse cx="140" cy="175" rx="35" ry="8" fill="#FFBFA3" opacity="0.2"/>
+
+  <!-- Necklace -->
+  <ellipse cx="140" cy="210" rx="40" ry="3" fill="none" stroke="#FFD700" stroke-width="2"/>
+  <circle cx="140" cy="217" r="5" fill="#FFD700"/>
+  <circle cx="140" cy="217" r="3" fill="#FFF9C4"/>
+</svg>

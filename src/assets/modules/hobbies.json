@@ -1,0 +1,82 @@
+{
+  "moduleId": "hobbies",
+  "title": "Hobbies & Interests",
+  "level": "Intermediário",
+  "dialogs": [
+    {
+      "question": "What do you do in your free time?",
+      "translation": "O que você faz no seu tempo livre?",
+      "answer": ["I", "I like to", "I enjoy", "I usually"]
+    },
+    {
+      "question": "Do you have any hobbies?",
+      "translation": "Você tem algum hobby?",
+      "answer": ["Yes, I do", "Yes, I like", "I enjoy", "No, not really"]
+    },
+    {
+      "question": "Do you like sports?",
+      "translation": "Você gosta de esportes?",
+      "answer": ["Yes, I do", "No, I don't", "I love sports", "Not really"]
+    },
+    {
+      "question": "What kind of music do you like?",
+      "translation": "Que tipo de música você gosta?",
+      "answer": ["I like", "I love", "I enjoy", "I prefer"]
+    },
+    {
+      "question": "Do you play any musical instruments?",
+      "translation": "Você toca algum instrumento musical?",
+      "answer": ["Yes, I play", "Yes, I play the", "No, I don't", "I used to"]
+    },
+    {
+      "question": "Do you like reading?",
+      "translation": "Você gosta de ler?",
+      "answer": ["Yes, I do", "Yes, I love reading", "No, not really", "Sometimes"]
+    },
+    {
+      "question": "What is your favorite movie?",
+      "translation": "Qual é o seu filme favorito?",
+      "answer": ["My favorite movie is", "I like", "I love"]
+    },
+    {
+      "question": "Do you like cooking?",
+      "translation": "Você gosta de cozinhar?",
+      "answer": ["Yes, I do", "Yes, I love cooking", "No, not really", "Sometimes"]
+    },
+    {
+      "question": "What do you like to do on weekends?",
+      "translation": "O que você gosta de fazer nos fins de semana?",
+      "answer": ["I like to", "I enjoy", "I usually", "On weekends, I"]
+    },
+    {
+      "question": "Do you like traveling?",
+      "translation": "Você gosta de viajar?",
+      "answer": ["Yes, I do", "Yes, I love traveling", "No, not really", "Very much"]
+    },
+    {
+      "question": "What is your favorite sport?",
+      "translation": "Qual é o seu esporte favorito?",
+      "answer": ["My favorite sport is", "I like", "I love", "I enjoy"]
+    },
+    {
+      "question": "Do you like watching TV?",
+      "translation": "Você gosta de assistir TV?",
+      "answer": ["Yes, I do", "Sometimes", "No, not really", "I prefer"]
+    },
+    {
+      "question": "Do you collect anything?",
+      "translation": "Você coleciona algo?",
+      "answer": ["Yes, I collect", "No, I don't", "I used to", "Not anymore"]
+    },
+    {
+      "question": "What do you like to do for fun?",
+      "translation": "O que você gosta de fazer para se divertir?",
+      "answer": ["I like to", "I enjoy", "For fun, I", "I love to"]
+    },
+    {
+      "question": "Do you enjoy outdoor activities?",
+      "translation": "Você gosta de atividades ao ar livre?",
+      "answer": ["Yes, I do", "Yes, I love them", "No, not really", "Sometimes"]
+    }
+  ]
+}

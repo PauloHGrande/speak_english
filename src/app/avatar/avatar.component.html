@@ -1,34 +1,71 @@
 <div class="ui">
-    <div class="score">Pontuação: {{score}}</div>
+    <div class="header-info">
+        <div class="score">Pontuação: {{score}}</div>
+        <div class="progress" *ngIf="totalQuestions > 0">
+            Questão {{currentQuestion}} de {{totalQuestions}}
+        </div>
+    </div>
+
     <div class="avatar-wrap">
-        <img class="avatar" src="assets/avatar_realistic.svg" alt="avatar">
+        <!-- Glow effect for listening state -->
+        <div class="avatar-glow" [class.glow-listening]="listening" [class.glow-speaking]="isSpeakingTTS"></div>
+        <!-- Avatar with enhanced states -->
+        <img class="avatar"
+             [class.active]="isActive"
+             [class.speaking-anim]="isSpeakingTTS"
+             src="assets/avatar_modern.svg"
+             alt="avatar">
         <div class="mouth" [class.speaking]="speaking"></div>
     </div>
+
     <div class="controls">
-        <button class="mic" [class.listening]="listening" (click)="toggleListen()">
+        <button class="btn btn--replay" (click)="replayQuestion()" *ngIf="currentDialog" title="Ouvir novamente">
+            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#fff" d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+            </svg>
+            <span>Repetir</span>
+        </button>
+
+        <button class="btn btn--primary" [class.listening]="listening" (click)="toggleListen()">
             <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#fff"
                       d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 14 0h-2z"/>
             </svg>
             <span>{{ listening ? 'Ouvindo...' : 'Responder' }}</span>
         </button>
+
+        <button class="btn btn--skip"
+                (click)="skipQuestion()"
+                *ngIf="currentDialog && currentQuestion < totalQuestions && answeredCorrectly"
+                title="Próxima questão">
+            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#fff" d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+            </svg>
+            <span>Próxima</span>
+        </button>
     </div>
-    <div class="panel" *ngIf="currentDialog">
+    <div class="panel" *ngIf="currentDialog" [@fadeIn]="showContent ? 'visible' : 'hidden'">
         <div class="row"><span class="label">Pergunta (EN):</span><span class="value">{{currentDialog.question}}</span>
         </div>
         <div class="row"><span class="label">Tradução (PT):</span><span
                 class="value">{{currentDialog.translation}}</span></div>
         <div class="row"><span class="label">Resposta (EN):</span><span
-                class="value">{{currentDialog.answer}}</span></div>
+                class="value">{{getDisplayAnswer()}}</span></div>
         <div class="row" *ngIf="recognizedText"><span class="label">Você disse:</span><span class="value">{{recognizedText}}</span>
         </div>
-        <div class="row" *ngIf="feedback"><span class="label">Feedback:</span><span class="value">{{feedback}}</span>
+        <div class="row feedback-row" *ngIf="feedback">
+            <span class="label">Feedback:</span>
+            <span class="value" [class.feedback--success]="feedback.startsWith('✅')"
+                  [class.feedback--error]="feedback.startsWith('❌')">{{feedback}}</span>
         </div>
 
         <!-- Só aparece se o último feedback for erro -->
         <div class="row row--center" *ngIf="feedback && feedback.startsWith('❌')">
-            <button class="mic mic--secondary" type="button" (click)="playCorrectAnswer()">
-                🔊 Ouvir resposta correta
+            <button class="btn btn--secondary" type="button" (click)="playCorrectAnswer()">
+                <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#fff" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                </svg>
+                Ouvir resposta correta
             </button>
         </div>
 

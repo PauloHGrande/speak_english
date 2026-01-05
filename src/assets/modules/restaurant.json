@@ -1,17 +1,82 @@
 {
   "moduleId": "restaurant",
-  "title": "No Restaurante",
+  "title": "Food & Dining",
   "level": "Iniciante",
   "dialogs": [
     {
-      "question": "I would like to see the menu, please.",
-      "translation": "Eu gostaria de ver o cardápio, por favor.",
-      "answer": "Sure, here it is."
+      "question": "Can I see the menu, please?",
+      "translation": "Posso ver o cardápio, por favor?",
+      "answer": ["Yes, here you are", "Of course", "Sure", "Here it is"]
+    },
+    {
+      "question": "Are you ready to order?",
+      "translation": "Você está pronto para pedir?",
+      "answer": ["Yes, I am", "Yes, please", "Not yet", "Just a moment"]
+    },
+    {
+      "question": "What would you like to drink?",
+      "translation": "O que você gostaria de beber?",
+      "answer": ["I would like", "I'll have", "Can I have", "Water, please"]
+    },
+    {
+      "question": "What do you recommend?",
+      "translation": "O que você recomenda?",
+      "answer": ["I recommend the", "The", "Our specialty is", "Try the"]
+    },
+    {
+      "question": "Is this spicy?",
+      "translation": "Isso é picante?",
+      "answer": ["Yes, it is", "No, it isn't", "A little", "Very spicy"]
     },
     {
       "question": "Can I have the bill, please?",
-      "translation": "Posso ver a conta, por favor?",
-      "answer": "Yes, I'll bring it right away."
+      "translation": "Posso ter a conta, por favor?",
+      "answer": ["Of course", "Right away", "Here you are", "Sure"]
+    },
+    {
+      "question": "Is service included?",
+      "translation": "O serviço está incluído?",
+      "answer": ["Yes, it is", "No, it isn't", "Yes", "No"]
+    },
+    {
+      "question": "Do you have vegetarian options?",
+      "translation": "Você tem opções vegetarianas?",
+      "answer": ["Yes, we do", "Yes", "We have", "Let me check"]
+    },
+    {
+      "question": "How long will it take?",
+      "translation": "Quanto tempo vai demorar?",
+      "answer": ["About", "Around", "It will take", "Approximately"]
+    },
+    {
+      "question": "Can I have a glass of water?",
+      "translation": "Posso ter um copo de água?",
+      "answer": ["Of course", "Sure", "Yes", "Right away"]
+    },
+    {
+      "question": "Is the food good here?",
+      "translation": "A comida é boa aqui?",
+      "answer": ["Yes, it is", "Very good", "Excellent", "The best"]
+    },
+    {
+      "question": "What is your favorite food?",
+      "translation": "Qual é a sua comida favorita?",
+      "answer": ["My favorite food is", "I like", "I love", "I prefer"]
+    },
+    {
+      "question": "Can I make a reservation?",
+      "translation": "Posso fazer uma reserva?",
+      "answer": ["Yes, of course", "For how many people", "What time", "Sure"]
+    },
+    {
+      "question": "Do you have a table for two?",
+      "translation": "Você tem uma mesa para dois?",
+      "answer": ["Yes, we do", "Follow me", "Right this way", "Just a moment"]
+    },
+    {
+      "question": "The food was delicious!",
+      "translation": "A comida estava deliciosa!",
+      "answer": ["Thank you", "I'm glad you liked it", "Thank you very much", "Great"]
     }
   ]
 }

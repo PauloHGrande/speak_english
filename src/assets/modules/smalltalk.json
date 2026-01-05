@@ -1,19 +1,82 @@
 {
   "moduleId": "smalltalk",
-  "title": "Small Talk",
+  "title": "Small Talk & Conversation",
   "level": "Intermediário",
   "dialogs": [
     {
-      "question": "What do you do for a living?",
-      "translation": "O que você faz da vida?",
-      "answer": "I'm a software developer."
+      "question": "How was your weekend?",
+      "translation": "Como foi o seu fim de semana?",
+      "answer": ["It was good", "Great", "Nice", "It was"]
     },
     {
-      "question": "What are your hobbies?",
-      "translation": "Quais são seus hobbies?",
-      "answer": [
-        "I like reading."
-      ]
+      "question": "What did you do yesterday?",
+      "translation": "O que você fez ontem?",
+      "answer": ["I", "Yesterday, I", "I went", "Nothing special"]
+    },
+    {
+      "question": "Have you seen any good movies lately?",
+      "translation": "Você assistiu algum filme bom ultimamente?",
+      "answer": ["Yes, I saw", "No, not really", "I watched", "Not lately"]
+    },
+    {
+      "question": "Do you have any plans for the weekend?",
+      "translation": "Você tem planos para o fim de semana?",
+      "answer": ["Yes, I do", "No, not yet", "I'm planning to", "Maybe"]
+    },
+    {
+      "question": "How is the weather today?",
+      "translation": "Como está o tempo hoje?",
+      "answer": ["It is", "It's", "The weather is", "Nice", "Bad"]
+    },
+    {
+      "question": "Did you hear about the news?",
+      "translation": "Você ouviu sobre as notícias?",
+      "answer": ["Yes, I did", "No, what happened", "No, I didn't", "What news"]
+    },
+    {
+      "question": "How was your day?",
+      "translation": "Como foi o seu dia?",
+      "answer": ["It was good", "Great", "Busy", "Tiring", "Nice"]
+    },
+    {
+      "question": "What are you doing this evening?",
+      "translation": "O que você vai fazer esta noite?",
+      "answer": ["I am", "I'm", "Nothing much", "I'm planning to"]
+    },
+    {
+      "question": "Have you been to that new restaurant?",
+      "translation": "Você foi naquele restaurante novo?",
+      "answer": ["Yes, I have", "No, not yet", "No, I haven't", "Not yet"]
+    },
+    {
+      "question": "What do you think about this weather?",
+      "translation": "O que você acha deste tempo?",
+      "answer": ["I think it's", "It's", "I like it", "I don't like it"]
+    },
+    {
+      "question": "Are you busy these days?",
+      "translation": "Você está ocupado estes dias?",
+      "answer": ["Yes, I am", "Yes, very busy", "No, not really", "A little"]
+    },
+    {
+      "question": "What are you up to?",
+      "translation": "O que você está fazendo?",
+      "answer": ["Nothing much", "Just", "I'm", "Not much"]
+    },
+    {
+      "question": "How is your family?",
+      "translation": "Como está sua família?",
+      "answer": ["They are fine", "They're good", "Everyone is well", "Good, thanks"]
+    },
+    {
+      "question": "Long time no see! How have you been?",
+      "translation": "Há quanto tempo! Como você tem estado?",
+      "answer": ["I have been good", "I've been great", "Good, and you", "Fine, thanks"]
+    },
+    {
+      "question": "Did you have a nice vacation?",
+      "translation": "Você teve boas férias?",
+      "answer": ["Yes, I did", "It was great", "Yes, very nice", "Amazing"]
     }
   ]
 }

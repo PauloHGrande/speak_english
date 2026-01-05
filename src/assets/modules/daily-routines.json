@@ -1,0 +1,82 @@
+{
+  "moduleId": "daily-routines",
+  "title": "Daily Routines",
+  "level": "Iniciante",
+  "dialogs": [
+    {
+      "question": "What time do you wake up?",
+      "translation": "Que horas você acorda?",
+      "answer": ["I wake up at", "I usually wake up at", "I get up at"]
+    },
+    {
+      "question": "Do you eat breakfast every day?",
+      "translation": "Você toma café da manhã todos os dias?",
+      "answer": ["Yes, I do", "Yes, I eat breakfast every day", "No, I don't"]
+    },
+    {
+      "question": "What do you do in the morning?",
+      "translation": "O que você faz de manhã?",
+      "answer": ["I", "In the morning, I", "I usually"]
+    },
+    {
+      "question": "How do you go to work?",
+      "translation": "Como você vai para o trabalho?",
+      "answer": ["I go by", "I take the", "I drive", "I walk"]
+    },
+    {
+      "question": "What time do you start work?",
+      "translation": "Que horas você começa a trabalhar?",
+      "answer": ["I start work at", "I start at", "At"]
+    },
+    {
+      "question": "Do you have lunch at home?",
+      "translation": "Você almoça em casa?",
+      "answer": ["Yes, I do", "No, I don't", "Sometimes"]
+    },
+    {
+      "question": "What do you do after work?",
+      "translation": "O que você faz depois do trabalho?",
+      "answer": ["I", "After work, I", "I usually"]
+    },
+    {
+      "question": "Do you exercise regularly?",
+      "translation": "Você se exercita regularmente?",
+      "answer": ["Yes, I do", "No, I don't", "Sometimes", "I try to"]
+    },
+    {
+      "question": "What time do you have dinner?",
+      "translation": "Que horas você janta?",
+      "answer": ["I have dinner at", "I eat dinner at", "At", "Around"]
+    },
+    {
+      "question": "Do you watch TV in the evening?",
+      "translation": "Você assiste TV à noite?",
+      "answer": ["Yes, I do", "Sometimes", "No, I don't", "Occasionally"]
+    },
+    {
+      "question": "What do you do before bed?",
+      "translation": "O que você faz antes de dormir?",
+      "answer": ["I", "Before bed, I", "I usually"]
+    },
+    {
+      "question": "What time do you go to bed?",
+      "translation": "Que horas você vai dormir?",
+      "answer": ["I go to bed at", "I sleep at", "At", "Around"]
+    },
+    {
+      "question": "How many hours do you sleep?",
+      "translation": "Quantas horas você dorme?",
+      "answer": ["I sleep", "About", "Around", "I usually sleep"]
+    },
+    {
+      "question": "Do you work on weekends?",
+      "translation": "Você trabalha nos fins de semana?",
+      "answer": ["Yes, I do", "No, I don't", "Sometimes", "Occasionally"]
+    },
+    {
+      "question": "What is your favorite part of the day?",
+      "translation": "Qual é a sua parte favorita do dia?",
+      "answer": ["My favorite part is", "I like", "I prefer", "The"]
+    }
+  ]
+}

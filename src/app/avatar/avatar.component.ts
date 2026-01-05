@@ -1,19 +1,39 @@
 
 import { Component, AfterViewInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { VoiceService, Dialog } from '../voice.service';
 
 @Component({
   selector: 'app-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      state('hidden', style({
+        opacity: 0,
+        transform: 'translateY(10px)'
+      })),
+      state('visible', style({
+        opacity: 1,
+        transform: 'translateY(0)'
+      })),
+      transition('hidden <=> visible', animate('300ms ease-out'))
+    ])
+  ]
 })
 export class AvatarComponent implements AfterViewInit {
   speaking = false;
   listening = false;
+  isSpeakingTTS = false; // Track TTS speech separately
+  isActive = false; // Track if avatar is actively engaged
   recognizedText = '';
   feedback = '';
   score = 0;
+  answeredCorrectly = false; // Track if current question was answered correctly
   currentDialog: Dialog | null = null;
+  currentQuestion = 0;
+  totalQuestions = 0;
+  showContent = true; // For fade transitions
 
   audioContext!: AudioContext;
   analyser!: AnalyserNode;
@@ -36,6 +56,7 @@ export class AvatarComponent implements AfterViewInit {
       this.recognizedText = '';
       this.score = 0;
       this.currentDialog = null;
+      this.answeredCorrectly = false; // Reset on module change
 
       this.nextQuestion();
     });
@@ -62,7 +83,7 @@ export class AvatarComponent implements AfterViewInit {
       this.animateMouthByMic();
 
       await this.voice.loadModules();
-      this.nextQuestion();
+      // nextQuestion is called by moduleChanged$ subscription, no need to call it here
     } catch (err) {
       console.error('Microfone não disponível', err);
     }
@@ -77,7 +98,12 @@ export class AvatarComponent implements AfterViewInit {
       const v =
         this.dataArray.reduce((a, b) => a + b, 0) / this.dataArray.length;
 
-      this.speaking = v > 28;
+      // Only move mouth when TTS is speaking OR when listening AND voice detected above threshold
+      const voiceDetected = v > 50; // Increased threshold to prevent ambient noise
+      this.speaking = this.isSpeakingTTS || (this.listening && voiceDetected);
+
+      // Avatar is active when listening or speaking
+      this.isActive = this.listening || this.isSpeakingTTS;
     };
 
     loop();
@@ -106,6 +132,7 @@ export class AvatarComponent implements AfterViewInit {
     if (correct) {
       this.feedback = '✅ Correct!';
       this.score += 10;
+      this.answeredCorrectly = true; // Mark as answered correctly
 
       // Cancela qualquer timer antigo
       if (this.advanceTimer) {
@@ -122,33 +149,61 @@ export class AvatarComponent implements AfterViewInit {
       // this.advanceTimer = setTimeout(() => this.nextQuestion(), 1200);
     } else {
       this.feedback = '❌ Try again';
+      this.answeredCorrectly = false; // Not answered correctly
       this.speakWithMouth('Please try again');
     }
   }
 
   nextQuestion() {
-    const next = this.voice.getNextDialog();
-    this.currentDialog = next;
+    // Fade out transition
+    this.showContent = false;
 
-    if (next) {
-      this.feedback = '';
-      this.speakWithMouth(next.question);
-    } else {
-      this.speakWithMouth('Congratulations! You finished this module.');
+    setTimeout(() => {
+      const next = this.voice.getNextDialog();
+      this.currentDialog = next;
+      this.currentQuestion = this.voice.getCurrentQuestionNumber();
+      this.totalQuestions = this.voice.getTotalQuestions();
+
+      if (next) {
+        this.feedback = '';
+        this.recognizedText = '';
+        this.answeredCorrectly = false; // Reset for new question
+        this.speakWithMouth(next.question);
+      } else {
+        this.speakWithMouth('Congratulations! You finished this module.');
+      }
+
+      // Fade in transition
+      this.showContent = true;
+    }, 300);
+  }
+
+  replayQuestion() {
+    if (this.currentDialog) {
+      this.speakWithMouth(this.currentDialog.question);
     }
+  }
+
+  skipQuestion() {
+    if (this.advanceTimer) {
+      clearTimeout(this.advanceTimer);
+      this.advanceTimer = null;
+    }
+    this.nextQuestion();
   }
 
 
   speakWithMouth(text: string, cb?: () => void) {
     this.voice.speak(text, {
       onstart: () => {
-        this.speaking = true;
+        this.isSpeakingTTS = true;
       },
       onboundary: () => {
-        this.speaking = !this.speaking;
+        // Create subtle mouth variation during TTS speech
+        // This adds natural rhythm to the mouth movement
       },
       onend: () => {
-        this.speaking = false;
+        this.isSpeakingTTS = false;
         if (cb) cb();
       },
     });
@@ -164,6 +219,16 @@ export class AvatarComponent implements AfterViewInit {
 
     // Fala a resposta correta
     this.speakWithMouth(answer);
+  }
+
+  // Get formatted answer for display (only first answer if array)
+  getDisplayAnswer(): string {
+    if (!this.currentDialog) return '';
+
+    if (Array.isArray(this.currentDialog.answer)) {
+      return this.currentDialog.answer[0];
+    }
+    return this.currentDialog.answer;
   }
 
 }

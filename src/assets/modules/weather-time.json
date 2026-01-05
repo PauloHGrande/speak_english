@@ -1,0 +1,82 @@
+{
+  "moduleId": "weather-time",
+  "title": "Weather & Time",
+  "level": "Iniciante",
+  "dialogs": [
+    {
+      "question": "What is the weather like today?",
+      "translation": "Como está o tempo hoje?",
+      "answer": ["It is", "It's", "The weather is", "Today is"]
+    },
+    {
+      "question": "Is it going to rain?",
+      "translation": "Vai chover?",
+      "answer": ["Yes, it is", "No, it isn't", "I think so", "Maybe"]
+    },
+    {
+      "question": "What time is it?",
+      "translation": "Que horas são?",
+      "answer": ["It is", "It's"]
+    },
+    {
+      "question": "Is it cold outside?",
+      "translation": "Está frio lá fora?",
+      "answer": ["Yes, it is", "No, it isn't", "Yes", "No", "Very cold"]
+    },
+    {
+      "question": "What is the temperature?",
+      "translation": "Qual é a temperatura?",
+      "answer": ["It is", "It's", "About", "Around"]
+    },
+    {
+      "question": "Do I need an umbrella?",
+      "translation": "Eu preciso de um guarda-chuva?",
+      "answer": ["Yes, you do", "No, you don't", "Yes", "No", "I think so"]
+    },
+    {
+      "question": "What day is today?",
+      "translation": "Que dia é hoje?",
+      "answer": ["Today is", "It is", "It's"]
+    },
+    {
+      "question": "What month is it?",
+      "translation": "Que mês é?",
+      "answer": ["It is", "It's", "We are in"]
+    },
+    {
+      "question": "Is it sunny?",
+      "translation": "Está ensolarado?",
+      "answer": ["Yes, it is", "No, it isn't", "Yes", "No", "Very sunny"]
+    },
+    {
+      "question": "What season is it?",
+      "translation": "Que estação é?",
+      "answer": ["It is", "It's", "We are in"]
+    },
+    {
+      "question": "Is it windy today?",
+      "translation": "Está ventando hoje?",
+      "answer": ["Yes, it is", "No, it isn't", "Very windy", "A little"]
+    },
+    {
+      "question": "What is your favorite season?",
+      "translation": "Qual é a sua estação favorita?",
+      "answer": ["My favorite season is", "I like", "I prefer"]
+    },
+    {
+      "question": "What time do you usually wake up?",
+      "translation": "Que horas você costuma acordar?",
+      "answer": ["I wake up at", "At", "Around", "Usually at"]
+    },
+    {
+      "question": "Is it cloudy?",
+      "translation": "Está nublado?",
+      "answer": ["Yes, it is", "No, it isn't", "Yes", "No", "Very cloudy"]
+    },
+    {
+      "question": "Will it be warm tomorrow?",
+      "translation": "Vai estar quente amanhã?",
+      "answer": ["Yes, it will", "No, it won't", "I think so", "I hope so"]
+    }
+  ]
+}
