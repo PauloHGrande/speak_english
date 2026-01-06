@@ -2,6 +2,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { VoiceService, Dialog } from '../voice.service';
+import { ProgressService } from '../services/progress.service';
 
 @Component({
   selector: 'app-avatar',
@@ -42,9 +43,12 @@ export class AvatarComponent implements AfterViewInit {
 
 
   // avatar.component.ts (adicione no constructor)
-  constructor(private voice: VoiceService) {
+  constructor(
+    private voice: VoiceService,
+    private progressService: ProgressService
+  ) {
     // Quando módulo mudar, limpamos estados e pedimos a primeira pergunta
-    this.voice.moduleChanged$.subscribe(() => {
+    this.voice.moduleChanged$.subscribe((moduleId) => {
       // cancela qualquer avanço pendente
       if (this.advanceTimer) {
         clearTimeout(this.advanceTimer);
@@ -54,9 +58,24 @@ export class AvatarComponent implements AfterViewInit {
       this.listening = false;
       this.feedback = '';
       this.recognizedText = '';
-      this.score = 0;
       this.currentDialog = null;
       this.answeredCorrectly = false; // Reset on module change
+
+      // Initialize progress tracking for this module
+      const totalQuestions = this.voice.getTotalQuestions();
+      this.progressService.initializeModule(moduleId, totalQuestions);
+
+      // Resume from where user left off and load the module score
+      const progress = this.progressService.getModuleProgress(moduleId);
+      if (progress) {
+        this.score = progress.score; // Load module score
+        if (progress.answeredQuestions > 0) {
+          // Skip already answered questions
+          this.voice.skipToQuestion(progress.answeredQuestions);
+        }
+      } else {
+        this.score = 0;
+      }
 
       this.nextQuestion();
     });
@@ -133,6 +152,11 @@ export class AvatarComponent implements AfterViewInit {
       this.feedback = '✅ Correct!';
       this.score += 10;
       this.answeredCorrectly = true; // Mark as answered correctly
+
+      // Track progress
+      if (this.voice.currentModuleId) {
+        this.progressService.recordAnswer(this.voice.currentModuleId, true, 10);
+      }
 
       // Cancela qualquer timer antigo
       if (this.advanceTimer) {

@@ -1,6 +1,14 @@
-/* Container */
+
+/* ===== Sidebar full-bleed para preencher a página toda ===== */
 .sidebar {
-  width: 100%;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 0 32px;          /* respiro lateral */
+  box-sizing: border-box;
 }
 
 /* Título */
@@ -13,24 +21,28 @@
   letter-spacing: -0.5px;
 }
 
-/* ===== GRID: quatro colunas com espaçamento confortável ===== */
+/* ===== CONTAINER: FLEXBOX COM WRAP ===== */
 .modules {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)); /* quatro colunas */
-  column-gap: 20px;  /* espaço horizontal entre colunas */
-  row-gap: 18px;     /* espaço vertical entre linhas */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 20px;               /* row-gap e column-gap */
+  justify-content: flex-start;  /* cards começam à esquerda */
+  align-content: flex-start;    /* cada linha “gruda” no topo, sem distribuir verticalmente */
 }
 
-/* ===== Card — maior, com mais padding e altura mínima ===== */
+/* ===== Card (largura fixa) ===== */
 .module-card {
-  width: 100%;
+  flex: 0 0 340px;       /* basis fixo = largura do card */
+  width: 340px;
+  max-width: 340px;
+
   display: grid;
   grid-template-rows: auto 1fr auto; /* header | desc | meta */
   background: rgba(255, 255, 255, 0.09);
   border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 14px;     /* mais arredondado */
-  padding: 14px;           /* mais respiro interno */
-  min-height: 108px;       /* altura mínima para não “colocar um em cima do outro” */
+  border-radius: 14px;
+  padding: 14px;
+  min-height: 108px;
 
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
   cursor: pointer;
@@ -44,6 +56,10 @@
     background-color 0.22s ease;
 }
 
+/* Conteúdo interno — por padrão ocupa toda a largura do card */
+.module-card__inner { width: 100%; }
+
+/* Interações */
 .module-card:hover,
 .module-card:focus {
   transform: translateY(-1px);
@@ -59,23 +75,23 @@
   box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.35) inset;
 }
 
-/* Foco acessível sem “pulo” */
+/* Foco acessível */
 .module-card:focus {
   outline: 2px solid rgba(63, 81, 181, 0.65);
   outline-offset: 2px;
 }
 
-/* ===== Header (título + nível) ===== */
+/* ===== Header ===== */
 .module-card__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px; /* evita encostar quando o título é grande */
+  gap: 10px;
 }
 
 .module-card__title {
   font-weight: 700;
-  font-size: 16px; /* maior */
+  font-size: 16px;
   line-height: 1.28;
 }
 
@@ -83,39 +99,110 @@
   background: #3f51b5;
   color: #fff;
   border-radius: 999px;
-  font-size: 12px; /* maior */
+  font-size: 12px;
   padding: 5px 12px;
   white-space: nowrap;
 }
 
 /* ===== Descrição ===== */
 .module-card__desc {
-  margin: 10px 0;     /* mais espaço entre header e meta */
+  margin: 10px 0;
   opacity: 0.9;
-  font-size: 14px;    /* maior */
+  font-size: 14px;
   line-height: 1.42;
 
-  /* opcional: truncar para uniformizar altura */
+  /* truncar para uniformizar altura */
   display: -webkit-box;
-  -webkit-line-clamp: 2;  /* até 2 linhas */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* ===== Meta (lições / duração) ===== */
+/* ===== Meta ===== */
 .module-card__meta {
   display: flex;
-  gap: 10px;          /* mais espaço entre itens */
+  gap: 10px;
   opacity: 0.84;
-  font-size: 12.5px;  /* sutilmente maior */
+  font-size: 12.5px;
   line-height: 1.34;
+}
+
+/* ===== Progress Section ===== */
+.module-card__progress {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.progress-text {
+  font-weight: 600;
+  color: #8bc34a;
+}
+
+.remaining-text {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.completed-date {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.completed-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #4caf50;
+  border-radius: 50%;
+  font-size: 12px;
+  margin-right: 6px;
+  color: white;
+  font-weight: bold;
+}
+
+/* ===== Full row a cada 6º card (6, 12, 18, ...) =====
+   Ocupa a linha toda, mas CENTRALIZA o conteúdo de 340px
+   para a linha não parecer “puxada” para a esquerda. */
+.module-card--full {
+  flex: 0 0 100%;          /* quebra e ocupa 100% da largura */
+  display: flex;           /* permite centralizar o conteúdo interno */
+}
+
+.module-card--full .module-card__inner {
+  width: 340px;
+  max-width: 340px;
+  margin-inline: auto;     /* CENTRALIZA o conteúdo do card full-row */
 }
 
 /* ===== Responsivo ===== */
 @media (max-width: 1400px) {
-  .modules {
-    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 colunas em telas médias */
-  }
+  .sidebar__title { font-size: 21px; }
 }
 
 @media (max-width: 968px) {
@@ -124,15 +211,19 @@
     margin-bottom: 16px;
   }
 
-  .modules {
-    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 colunas em tablets */
-    column-gap: 16px;
-    row-gap: 16px;
-  }
+  .modules { gap: 16px; }
 
   .module-card {
     min-height: 100px;
     padding: 16px;
+    width: 320px;
+    max-width: 320px;
+    flex-basis: 320px;
+  }
+
+  .module-card--full .module-card__inner {
+    width: 320px;
+    max-width: 320px;
   }
 }
 
@@ -143,30 +234,27 @@
   }
 
   .modules {
-    grid-template-columns: 1fr; /* 1 coluna em mobile */
-    row-gap: 12px;
+    gap: 12px;
   }
 
+  /* Em mobile, todos ocupam a linha inteira */
   .module-card {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: none;
     min-height: 90px;
     padding: 14px;
     border-radius: 12px;
   }
 
-  .module-card__title {
-    font-size: 15px;
-  }
+  .module-card__title { font-size: 15px; }
+  .module-card__badge { font-size: 11px; padding: 4px 10px; }
+  .module-card__desc { font-size: 13px; }
+  .module-card__meta { font-size: 12px; }
 
-  .module-card__badge {
-    font-size: 11px;
-    padding: 4px 10px;
-  }
-
-  .module-card__desc {
-    font-size: 13px;
-  }
-
-  .module-card__meta {
-    font-size: 12px;
+  .module-card--full .module-card__inner {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0; /* em 1 coluna, deixa fluir */
   }
 }

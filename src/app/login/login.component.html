@@ -1,0 +1,37 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Aprenda Inglês</h1>
+    <h2>Login</h2>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Enter your email"
+          [disabled]="isLoading"
+          required
+        />
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+
+    <div class="demo-info">
+      <p>Demo emails:</p>
+      <ul>
+        <li>user&#64;example.com</li>
+        <li>test&#64;test.com</li>
+      </ul>
+    </div>
+  </div>
+</div>

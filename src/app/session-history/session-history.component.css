@@ -1,0 +1,195 @@
+.session-history {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+/* Compact mode for avatar component */
+:host-context(.compact-history) .session-history {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  margin-top: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+:host-context(.compact-history) .history-header {
+  padding: 10px 14px;
+}
+
+:host-context(.compact-history) .header-icon {
+  font-size: 16px;
+}
+
+:host-context(.compact-history) .header-title {
+  font-size: 14px;
+  color: #fff;
+}
+
+:host-context(.compact-history) .header-toggle {
+  color: #fff;
+}
+
+:host-context(.compact-history) .quick-stats {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-left: 26px;
+}
+
+:host-context(.compact-history) .history-body {
+  padding: 10px 14px;
+}
+
+:host-context(.compact-history) .activity-item {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+:host-context(.compact-history) .activity-module {
+  font-size: 12px;
+}
+
+:host-context(.compact-history) .activity-badge {
+  padding: 3px 8px;
+  font-size: 11px;
+}
+
+:host-context(.compact-history) .activity-details {
+  font-size: 11px;
+}
+
+.history-header {
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.history-header:hover {
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.header-icon {
+  font-size: 20px;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+}
+
+.header-toggle {
+  color: #667eea;
+  font-size: 14px;
+}
+
+.quick-stats {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+  margin-left: 30px;
+}
+
+.stat {
+  font-weight: 500;
+}
+
+.stat-separator {
+  color: #ccc;
+}
+
+.history-body {
+  padding: 16px 20px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.activity-item {
+  background: #f8f9fa;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.activity-module {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.activity-badge {
+  background: #ff9800;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.activity-badge.high-accuracy {
+  background: #4caf50;
+}
+
+.activity-details {
+  font-size: 13px;
+  color: #666;
+}
+
+@media (max-width: 640px) {
+  .history-header {
+    padding: 14px 16px;
+  }
+
+  .header-title {
+    font-size: 16px;
+  }
+
+  .quick-stats {
+    font-size: 13px;
+    margin-left: 26px;
+  }
+
+  .history-body {
+    padding: 12px 16px;
+  }
+
+  .activity-item {
+    padding: 10px 14px;
+  }
+}

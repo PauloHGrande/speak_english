@@ -21,7 +21,7 @@ export class VoiceService {
   private dialogs: Dialog[] = []; // antes era "modules: Dialog[]"
   private index = 0;
   private preferredVoice: SpeechSynthesisVoice | null = null;
-  private currentModuleId: string | null = null;
+  currentModuleId: string | null = null; // Made public for progress tracking
 
   // Evento opcional para avisar troca de módulo
   readonly moduleChanged$ = new Subject<string>();
@@ -68,6 +68,13 @@ export class VoiceService {
   /** Recomeça o módulo atual */
   resetModule(): void {
     this.index = 0;
+  }
+
+  /** Pula para uma pergunta específica (0-based index) */
+  skipToQuestion(questionIndex: number): void {
+    if (questionIndex >= 0 && questionIndex <= this.dialogs.length) {
+      this.index = questionIndex;
+    }
   }
 
   /** Retorna o índice atual (1-based para UI) */

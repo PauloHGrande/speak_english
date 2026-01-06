@@ -1,0 +1,30 @@
+<div class="session-history" *ngIf="todayActivities.length > 0">
+  <div class="history-header" (click)="toggleHistory()">
+    <div class="header-content">
+      <span class="header-icon">📊</span>
+      <span class="header-title">Today's Progress</span>
+      <span class="header-toggle">{{ showHistory ? '▼' : '▲' }}</span>
+    </div>
+    <div class="quick-stats">
+      <span class="stat">{{ getTotalQuestionsToday() }} questions</span>
+      <span class="stat-separator">•</span>
+      <span class="stat">{{ getOverallAccuracy() }}% accuracy</span>
+    </div>
+  </div>
+
+  <div class="history-body" *ngIf="showHistory">
+    <div class="activity-list">
+      <div class="activity-item" *ngFor="let activity of todayActivities">
+        <div class="activity-header">
+          <span class="activity-module">{{ activity.moduleTitle }}</span>
+          <span class="activity-badge" [class.high-accuracy]="activity.accuracy >= 80">
+            {{ activity.accuracy }}%
+          </span>
+        </div>
+        <div class="activity-details">
+          <span>{{ activity.correctAnswers }}/{{ activity.questionsAnswered }} correct</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

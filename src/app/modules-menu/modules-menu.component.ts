@@ -1,5 +1,5 @@
-
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ProgressService, ModuleProgress } from '../services/progress.service';
 
 export type ConversationModule = {
   id: string;
@@ -20,6 +20,8 @@ export class ModulesMenuComponent {
   @Input() activeIndex = 0;
   @Output() select = new EventEmitter<number>();
 
+  constructor(public progressService: ProgressService) {}
+
   onSelect(index: number) {
     if (index === this.activeIndex) return;
     this.select.emit(index);
@@ -27,5 +29,26 @@ export class ModulesMenuComponent {
 
   trackById(_idx: number, m: ConversationModule) {
     return m.id;
+  }
+
+  getModuleProgress(moduleId: string): ModuleProgress | null {
+    return this.progressService.getModuleProgress(moduleId);
+  }
+
+  getProgressPercentage(moduleId: string): number {
+    const progress = this.getModuleProgress(moduleId);
+    if (!progress || progress.totalQuestions === 0) return 0;
+    return Math.round((progress.answeredQuestions / progress.totalQuestions) * 100);
+  }
+
+  isModuleCompleted(moduleId: string): boolean {
+    const progress = this.getModuleProgress(moduleId);
+    return progress?.completedDate !== undefined;
+  }
+
+  getRemainingQuestions(moduleId: string): number {
+    const progress = this.getModuleProgress(moduleId);
+    if (!progress) return 0;
+    return Math.max(0, progress.totalQuestions - progress.answeredQuestions);
   }
 }

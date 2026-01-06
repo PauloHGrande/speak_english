@@ -1,22 +1,29 @@
+
 <aside class="sidebar" aria-label="Módulos de conversação">
     <h3 class="sidebar__title">Módulos</h3>
 
-    <!-- GRID de módulos (1 coluna por padrão, 2 colunas quando há espaço) -->
     <div class="modules" role="list">
         <div
                 class="module-card"
                 role="listitem"
                 *ngFor="let m of modules; let i = index; trackBy: trackById"
                 [class.module-card--active]="i === activeIndex"
+                [class.module-card--full]="(i + 1) % 6 === 0"
                 (click)="onSelect(i)"
-                tabindex="0"
-                (keyup.enter)="onSelect(i)"
-                role="button"
-                [attr.aria-pressed]="i === activeIndex"
-                [attr.aria-label]="m.title"
+        tabindex="0"
+        (keyup.enter)="onSelect(i)"
+        role="button"
+        [attr.aria-pressed]="i === activeIndex"
+        [attr.aria-label]="m.title"
         >
+        <!-- Wrapper interno para controlar a largura do conteúdo do card “full-row”
+             sem esticar o card em toda a linha -->
+        <div class="module-card__inner">
             <div class="module-card__header">
-                <span class="module-card__title">{{ m.title }}</span>
+                <span class="module-card__title">
+                    <span *ngIf="isModuleCompleted(m.id)" class="completed-icon">✓</span>
+                    {{ m.title }}
+                </span>
                 <span class="module-card__badge">{{ m.level }}</span>
             </div>
 
@@ -27,6 +34,22 @@
                 <span>•</span>
                 <span>Duração: {{ m.duration }}</span>
             </div>
+
+            <div class="module-card__progress" *ngIf="getModuleProgress(m.id)">
+                <div class="progress-bar">
+                    <div class="progress-fill" [style.width.%]="getProgressPercentage(m.id)"></div>
+                </div>
+                <div class="progress-info">
+                    <span class="progress-text">{{ getProgressPercentage(m.id) }}% completo</span>
+                    <span *ngIf="!isModuleCompleted(m.id)" class="remaining-text">
+                        {{ getRemainingQuestions(m.id) }} restantes
+                    </span>
+                    <span *ngIf="isModuleCompleted(m.id)" class="completed-date">
+                        Concluído em {{ getModuleProgress(m.id)?.completedDate }}
+                    </span>
+                </div>
+            </div>
         </div>
+    </div>
     </div>
 </aside>

@@ -1,0 +1,40 @@
+.header-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 15px 30px;
+    z-index: 1000;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.user-email {
+    color: #667eea;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.logout-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
