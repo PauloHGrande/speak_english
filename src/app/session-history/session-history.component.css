@@ -1,75 +1,65 @@
+
 .session-history {
-  background: rgba(255, 255, 255, 0.95);
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 16px;
+  height: 100%;
+  align-items: stretch;
+}
+
+/* ======= CONTAINERS SÓLIDOS + PASSAR POR CIMA DO OVERLAY ======= */
+.calendar-section,
+.progress-section {
+  background: #1f2430;              /* sólido */
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
   overflow: hidden;
+
+  /* Criar contexto e garantir prioridade visual */
+  position: relative;
+  isolation: isolate;                /* stacking context próprio */
+  z-index: 100;                      /* alto o suficiente para ficar acima */
 }
 
-/* Compact mode for avatar component */
-:host-context(.compact-history) .session-history {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 16px;
-  margin-top: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+.calendar-section {
+  align-self: start;
 }
 
-:host-context(.compact-history) .history-header {
-  padding: 10px 14px;
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
 }
 
-:host-context(.compact-history) .header-icon {
-  font-size: 16px;
+/* Bloquear qualquer pseudo-elemento herdado que crie “faixa” por cima */
+.calendar-section::before,
+.calendar-section::after,
+.progress-section::before,
+.progress-section::after {
+  content: none !important;
 }
 
-:host-context(.compact-history) .header-title {
-  font-size: 14px;
-  color: #fff;
+/* Se seus cards abaixo ainda ficarem por baixo, garanta z-index neles também */
+.today-progress-card,
+.module-card,
+.activity-card {
+  position: relative;
+  z-index: 110;
 }
 
-:host-context(.compact-history) .header-toggle {
-  color: #fff;
-}
-
-:host-context(.compact-history) .quick-stats {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.85);
-  margin-left: 26px;
-}
-
-:host-context(.compact-history) .history-body {
-  padding: 10px 14px;
-}
-
-:host-context(.compact-history) .activity-item {
-  padding: 8px 12px;
-  font-size: 12px;
-}
-
-:host-context(.compact-history) .activity-module {
-  font-size: 12px;
-}
-
-:host-context(.compact-history) .activity-badge {
-  padding: 3px 8px;
-  font-size: 11px;
-}
-
-:host-context(.compact-history) .activity-details {
-  font-size: 11px;
-}
-
+/* ======= HEADERS ======= */
+.calendar-header,
 .history-header {
   padding: 16px 20px;
   cursor: pointer;
   transition: background-color 0.2s;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
 }
 
+.calendar-header:hover,
 .history-header:hover {
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(255,255,255,0.06);
 }
 
 .header-content {
@@ -79,59 +69,161 @@
   margin-bottom: 8px;
 }
 
-.header-icon {
-  font-size: 20px;
-}
-
-.header-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  flex: 1;
-}
-
-.header-toggle {
-  color: #667eea;
-  font-size: 14px;
-}
+.header-icon { font-size: 20px; }
+.header-title { font-size: 18px; font-weight: 600; color: #fff; flex: 1; }
+.header-toggle { color: #fff; font-size: 14px; }
 
 .quick-stats {
   display: flex;
   gap: 8px;
   font-size: 14px;
-  color: #666;
-  margin-left: 30px;
+  color: #cfd6e6;
+  margin-left: 0;
 }
 
-.stat {
-  font-weight: 500;
-}
+.stat { font-weight: 500; }
+.stat-separator { color: #9aa4bf; }
 
-.stat-separator {
-  color: #ccc;
+/* ======= BODY ======= */
+.calendar-body {
+  padding: 16px 20px;
+  animation: fadeIn 0.18s ease-out;
 }
 
 .history-body {
   padding: 16px 20px;
-  animation: slideDown 0.3s ease-out;
+  animation: fadeIn 0.18s ease-out;
+  flex: 1;
+  overflow-y: auto;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    max-height: 0;
-  }
-  to {
-    opacity: 1;
-    max-height: 500px;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-.activity-list {
+/* ======= MAT-CALENDAR: FIXAR GRADE E NORMALIZAR CÉLULA ======= */
+.calendar-body ::ng-deep .mat-calendar {
+  width: 100%;
+}
+
+.calendar-body ::ng-deep .mat-calendar-table {
+  width: 100%;
+  table-layout: fixed !important; /* 7 colunas estáveis */
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+
+/* Cabeçalho dos dias da semana */
+.calendar-body ::ng-deep .mat-calendar-table thead tr {
+  display: table-row;
+}
+
+.calendar-body ::ng-deep .mat-calendar-table th {
+  width: 14.2857%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e9edf7;
+  padding: 8px 0;
+}
+
+/* Linhas do calendário (semanas) */
+.calendar-body ::ng-deep .mat-calendar-table tbody tr {
+  display: table-row;
+}
+
+/* Célula: uma única caixa limpa, sem "esticar" número */
+.calendar-body ::ng-deep .mat-calendar-body-cell {
+  width: 14.2857%;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 2px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Conteúdo interno do dia (número) */
+.calendar-body ::ng-deep .mat-calendar-body-cell-content {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin: 0 auto;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
 }
+
+/* Hoje (não selecionado): borda realçada sem deformar */
+.calendar-body ::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  outline: 2px solid #5da6ff;       /* usa outline para não somar à borda */
+  border-radius: 8px;
+}
+
+/* Selecionado */
+.calendar-body ::ng-deep .mat-calendar-body-selected {
+  background-color: #667eea !important;
+  color: #fff !important;
+  border-color: transparent;
+}
+
+/* ======= SE VOCÊ USA CONTADOR NA CÉLULA (MANTIDOS E COMPACTOS) ======= */
+.calendar-cell-wrapper {
+  /* se usar wrappers, que eles não “expandam” */
+  display: grid;
+  place-items: center;
+  width: 100%; height: 100%;
+  box-sizing: border-box;
+}
+
+.calendar-cell-date {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1;
+}
+
+.calendar-cell-count {
+  font-size: 9px;
+  font-weight: 600;
+  color: #667eea;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* ======= ESTADOS CUSTOMIZADOS (SEM DEFORMAR) ======= */
+.calendar-body ::ng-deep .high-accuracy-date,
+.calendar-body ::ng-deep .medium-accuracy-date {
+  border-radius: 8px;
+  position: relative;
+}
+
+.calendar-body ::ng-deep .high-accuracy-date {
+  background: rgba(76,175,80,0.20) !important;
+}
+.calendar-body ::ng-deep .high-accuracy-date .calendar-cell-count { color: #4caf50; }
+.calendar-body ::ng-deep .high-accuracy-date::after {
+  content: '';
+  position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+  width: 6px; height: 6px; background: #4caf50; border-radius: 50%;
+}
+
+.calendar-body ::ng-deep .medium-accuracy-date {
+  background: rgba(255,152,0,0.20) !important;
+}
+.calendar-body ::ng-deep .medium-accuracy-date .calendar-cell-count { color: #ff9800; }
+.calendar-body ::ng-deep .medium-accuracy-date::after {
+  content: '';
+  position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+  width: 6px; height: 6px; background: #ff9800; border-radius: 50%;
+}
+
+/* ======= ACTIVITY / TODAY’S PROGRESS ======= */
+.activity-list { display: flex; flex-direction: column; gap: 12px; }
 
 .activity-item {
   background: #f8f9fa;
@@ -141,55 +233,184 @@
 }
 
 .activity-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 6px;
 }
 
-.activity-module {
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
-}
-
+.activity-module { font-weight: 600; color: #333; font-size: 14px; }
 .activity-badge {
-  background: #ff9800;
-  color: white;
-  padding: 4px 10px;
+  background: #ff9800; color: white; padding: 4px 10px;
+  border-radius: 12px; font-size: 12px; font-weight: 600;
+}
+.activity-badge.high-accuracy { background: #4caf50; }
+.activity-details { font-size: 13px; color: #666; }
+
+/* ======= NO ACTIVITY ======= */
+.no-activity {
+  background: #1f2430;
   border-radius: 12px;
-  font-size: 12px;
-  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  padding: 40px 20px;
+  text-align: center;
+  color: #cfd6e6;
+}
+.no-activity-icon { font-size: 48px; display: block; margin-bottom: 16px; }
+.no-activity p { margin: 0; font-size: 16px; font-weight: 500; }
+
+/* ======= MODAL MODE ======= */
+:host-context(.modal-history) .session-history {
+  gap: 0;
+  grid-template-columns: 1fr;
 }
 
-.activity-badge.high-accuracy {
-  background: #4caf50;
+/* Calendar only modal */
+:host-context(.calendar-only) .progress-section {
+  display: none;
 }
 
-.activity-details {
-  font-size: 13px;
-  color: #666;
+:host-context(.calendar-only) .session-history {
+  grid-template-columns: 1fr;
+}
+
+/* Progress only modal */
+:host-context(.progress-only) .calendar-section {
+  display: none;
+}
+
+:host-context(.progress-only) .session-history {
+  grid-template-columns: 1fr;
+}
+
+/* Modal specific styles */
+:host-context(.modal-history) .calendar-section,
+:host-context(.modal-history) .progress-section {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+:host-context(.modal-history) .calendar-header,
+:host-context(.modal-history) .history-header {
+  display: none;
+}
+
+:host-context(.modal-history) .calendar-body,
+:host-context(.modal-history) .history-body {
+  padding: 0;
+}
+
+/* Add stats display at top of modal calendar */
+:host-context(.calendar-only) .calendar-body::before {
+  content: '';
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* ======= INLINE MODE (default) ======= */
+:host-context(.inline-history) .session-history {
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+:host-context(.inline-history) .calendar-section {
+  display: none;
+}
+
+:host-context(.inline-history) .progress-section {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  min-height: 200px;
+}
+
+:host-context(.inline-history) .activity-item {
+  background: rgba(255, 255, 255, 0.15);
+  border-left: 4px solid #667eea;
+}
+
+:host-context(.inline-history) .no-activity {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ======= COMPACT MODE ======= */
+:host-context(.compact-history) .session-history { gap: 12px; }
+:host-context(.compact-history) .calendar-section,
+:host-context(.compact-history) .progress-section {
+  background: #1f2430;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+:host-context(.compact-history) .calendar-header,
+:host-context(.compact-history) .history-header { padding: 10px 14px; }
+:host-context(.compact-history) .header-icon { font-size: 16px; }
+:host-context(.compact-history) .header-title { font-size: 14px; color: #fff; }
+:host-context(.compact-history) .header-toggle { color: #fff; }
+:host-context(.compact-history) .quick-stats {
+  font-size: 12px; color: rgba(255,255,255,0.85); margin-left: 0;
+}
+:host-context(.compact-history) .calendar-body,
+:host-context(.compact-history) .history-body { padding: 10px 14px; }
+:host-context(.compact-history) .activity-item { padding: 8px 12px; font-size: 12px; }
+:host-context(.compact-history) .activity-module { font-size: 12px; }
+:host-context(.compact-history) .activity-badge { padding: 3px 8px; font-size: 11px; }
+:host-context(.compact-history) .activity-details { font-size: 11px; }
+:host-context(.compact-history) .no-activity {
+  background: #1f2430;
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 30px 20px;
+}
+:host-context(.compact-history) .no-activity p { color: rgba(255,255,255,0.85); }
+
+/* ======= RESPONSIVO ======= */
+:host-context(.inline-history) {
+  @media (max-width: 900px) {
+    .session-history {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .progress-section {
+      min-height: 300px;
+    }
+
+    .calendar-section {
+      align-self: stretch;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .session-history {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .progress-section {
+    min-height: 400px;
+  }
+
+  .calendar-section {
+    align-self: stretch;
+  }
 }
 
 @media (max-width: 640px) {
-  .history-header {
-    padding: 14px 16px;
-  }
+  .calendar-header, .history-header { padding: 14px 16px; }
+  .header-title { font-size: 16px; }
+  .quick-stats { font-size: 13px; margin-left: 0; }
+  .calendar-body, .history-body { padding: 12px 16px; }
+  .activity-item { padding: 10px 14px; }
+  .no-activity { padding: 30px 16px; }
+  .no-activity-icon { font-size: 36px; }
+  .no-activity p { font-size: 14px; }
 
-  .header-title {
-    font-size: 16px;
+  .calendar-body ::ng-deep .mat-calendar-table th {
+    font-size: 10px; padding: 4px 0;
   }
-
-  .quick-stats {
-    font-size: 13px;
-    margin-left: 26px;
-  }
-
-  .history-body {
-    padding: 12px 16px;
-  }
-
-  .activity-item {
-    padding: 10px 14px;
+  .calendar-body ::ng-deep .mat-calendar-body-cell { height: 38px; }
+  .calendar-body ::ng-deep .mat-calendar-body-cell-content {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
   }
 }

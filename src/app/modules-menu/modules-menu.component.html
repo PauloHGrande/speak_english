@@ -2,54 +2,112 @@
 <aside class="sidebar" aria-label="Módulos de conversação">
     <h3 class="sidebar__title">Módulos</h3>
 
-    <div class="modules" role="list">
-        <div
-                class="module-card"
-                role="listitem"
-                *ngFor="let m of modules; let i = index; trackBy: trackById"
-                [class.module-card--active]="i === activeIndex"
-                [class.module-card--full]="(i + 1) % 6 === 0"
-                (click)="onSelect(i)"
-        tabindex="0"
-        (keyup.enter)="onSelect(i)"
-        role="button"
-        [attr.aria-pressed]="i === activeIndex"
-        [attr.aria-label]="m.title"
-        >
-        <!-- Wrapper interno para controlar a largura do conteúdo do card “full-row”
-             sem esticar o card em toda a linha -->
-        <div class="module-card__inner">
-            <div class="module-card__header">
-                <span class="module-card__title">
-                    <span *ngIf="isModuleCompleted(m.id)" class="completed-icon">✓</span>
-                    {{ m.title }}
-                </span>
-                <span class="module-card__badge">{{ m.level }}</span>
+    <div class="level-filters">
+        <button class="level-btn level-btn--beginner" (click)="openLevelModal('Iniciante')">
+            <span class="level-icon">🌱</span>
+            <span class="level-text">Beginner</span>
+        </button>
+        <button class="level-btn level-btn--intermediate" (click)="openLevelModal('Intermediário')">
+            <span class="level-icon">⚡</span>
+            <span class="level-text">Intermediate</span>
+        </button>
+        <button class="level-btn level-btn--advanced" (click)="openLevelModal('Avançado')">
+            <span class="level-icon">🚀</span>
+            <span class="level-text">Advanced</span>
+        </button>
+    </div>
+
+    <!-- Current Module Info -->
+    <div class="current-module" *ngIf="getCurrentModule()">
+        <div class="current-module-header">
+            <div class="current-module-title-group">
+                <span class="current-module-label">Current Module</span>
+                <h4 class="current-module-title">
+                    <span *ngIf="isModuleCompleted(getCurrentModule()!.id)" class="completed-icon">✓</span>
+                    {{ getCurrentModule()!.title }}
+                </h4>
             </div>
+            <span class="current-module-badge">{{ getCurrentModule()!.level }}</span>
+        </div>
 
-            <p class="module-card__desc">{{ m.description }}</p>
+        <p class="current-module-desc">{{ getCurrentModule()!.description }}</p>
 
-            <div class="module-card__meta">
-                <span>{{ m.lessons }} lições</span>
-                <span>•</span>
-                <span>Duração: {{ m.duration }}</span>
+        <div class="current-module-meta">
+            <span>📚 {{ getCurrentModule()!.lessons }} lições</span>
+            <span>•</span>
+            <span>⏱️ {{ getCurrentModule()!.duration }}</span>
+        </div>
+
+        <div class="current-module-progress" *ngIf="getModuleProgress(getCurrentModule()!.id)">
+            <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="getProgressPercentage(getCurrentModule()!.id)"></div>
             </div>
-
-            <div class="module-card__progress" *ngIf="getModuleProgress(m.id)">
-                <div class="progress-bar">
-                    <div class="progress-fill" [style.width.%]="getProgressPercentage(m.id)"></div>
+            <div class="current-progress-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Progress:</span>
+                    <span class="stat-value">{{ getProgressPercentage(getCurrentModule()!.id) }}%</span>
                 </div>
-                <div class="progress-info">
-                    <span class="progress-text">{{ getProgressPercentage(m.id) }}% completo</span>
-                    <span *ngIf="!isModuleCompleted(m.id)" class="remaining-text">
-                        {{ getRemainingQuestions(m.id) }} restantes
-                    </span>
-                    <span *ngIf="isModuleCompleted(m.id)" class="completed-date">
-                        Concluído em {{ getModuleProgress(m.id)?.completedDate }}
-                    </span>
+                <div class="stat-item" *ngIf="getModuleScore(getCurrentModule()!.id) > 0">
+                    <span class="stat-label">Score:</span>
+                    <span class="stat-value score-highlight">{{ getModuleScore(getCurrentModule()!.id) }} pts</span>
+                </div>
+                <div class="stat-item" *ngIf="!isModuleCompleted(getCurrentModule()!.id)">
+                    <span class="stat-label">Remaining:</span>
+                    <span class="stat-value">{{ getRemainingQuestions(getCurrentModule()!.id) }} questions</span>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </aside>
+
+<!-- Level Selection Modal -->
+<div class="modal-overlay" *ngIf="showLevelModal" (click)="closeLevelModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+            <h3>{{ getLevelLabel(selectedLevel) }} Modules</h3>
+            <button class="modal-close" (click)="closeLevelModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-modules-grid">
+                <div class="modal-module-card"
+                     *ngFor="let m of getFilteredModules(); let i = index"
+                     (click)="selectModuleFromModal(m, i)"
+                     [class.active]="getModuleIndex(m) === activeIndex">
+                    <div class="modal-module-header">
+                        <span class="modal-module-title">
+                            <span *ngIf="isModuleCompleted(m.id)" class="completed-icon">✓</span>
+                            {{ m.title }}
+                        </span>
+                        <span class="modal-module-badge">{{ m.level }}</span>
+                    </div>
+                    <p class="modal-module-desc">{{ m.description }}</p>
+                    <div class="modal-module-meta">
+                        <span>{{ m.lessons }} lições</span>
+                        <span>•</span>
+                        <span>{{ m.duration }}</span>
+                    </div>
+                    <div class="modal-module-progress" *ngIf="getModuleProgress(m.id)">
+                        <div class="progress-bar">
+                            <div class="progress-fill" [style.width.%]="getProgressPercentage(m.id)"></div>
+                        </div>
+                        <div class="modal-progress-stats">
+                            <span class="progress-text">{{ getProgressPercentage(m.id) }}%</span>
+                            <span class="score-text" *ngIf="getModuleScore(m.id) > 0">
+                                {{ getModuleScore(m.id) }} pts
+                            </span>
+                        </div>
+                        <button class="modal-reset-btn"
+                                (click)="onResetModuleFromModal($event, m.id, getModuleIndex(m))"
+                                title="Reiniciar módulo"
+                                *ngIf="getModuleProgress(m.id)?.answeredQuestions > 0">
+                            🔄 Reiniciar
+                        </button>
+                    </div>
+                </div>
+                <div class="no-modules" *ngIf="getFilteredModules().length === 0">
+                    <p>Nenhum módulo disponível neste nível.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

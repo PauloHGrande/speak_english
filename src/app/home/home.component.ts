@@ -28,6 +28,11 @@ export class HomeComponent implements OnInit {
   activeIndex = 0;
   currentUser$;
 
+  // Modal state
+  showCalendarModal = false;
+  showHistoryModal = false;
+  selectedProgressDate: Date = new Date();
+
   constructor(
     private voice: VoiceService,
     private authService: AuthService,
@@ -51,8 +56,36 @@ export class HomeComponent implements OnInit {
     await this.voice.loadModuleFromJson(id);
   }
 
+  async onModuleReset(event: { moduleId: string; index: number }) {
+    console.log(`[Home] Module reset: ${event.moduleId}, reloading...`);
+    // Reload the module to reflect the reset state
+    await this.voice.loadModuleFromJson(event.moduleId);
+  }
+
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  onProgressDateSelected(date: Date): void {
+    this.selectedProgressDate = date;
+  }
+
+  getProgressDateLabel(): string {
+    if (!this.selectedProgressDate) return 'Today\'s Progress';
+
+    const today = new Date();
+    const selectedDateStr = this.selectedProgressDate.toISOString().split('T')[0];
+    const todayStr = today.toISOString().split('T')[0];
+
+    if (selectedDateStr === todayStr) {
+      return 'Today\'s Progress';
+    }
+
+    const options: Intl.DateTimeFormatOptions = {
+      month: 'short',
+      day: 'numeric'
+    };
+    return this.selectedProgressDate.toLocaleDateString('en-US', options);
   }
 }

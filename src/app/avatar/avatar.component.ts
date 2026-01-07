@@ -67,14 +67,27 @@ export class AvatarComponent implements AfterViewInit {
 
       // Resume from where user left off and load the module score
       const progress = this.progressService.getModuleProgress(moduleId);
+
+      // Debug current state
+      this.progressService.debugProgress(moduleId);
+
       if (progress) {
-        this.score = progress.score; // Load module score
-        if (progress.answeredQuestions > 0) {
+        // Always load score from progress service (single source of truth)
+        this.score = progress.score;
+        console.log(`[Avatar] Loaded module ${moduleId}: score=${this.score}, answered=${progress.answeredQuestions}/${totalQuestions}`);
+
+        if (progress.answeredQuestions > 0 && progress.answeredQuestions < totalQuestions) {
           // Skip already answered questions
           this.voice.skipToQuestion(progress.answeredQuestions);
+          console.log(`[Avatar] Resuming at question ${progress.answeredQuestions + 1}`);
+        } else if (progress.answeredQuestions >= totalQuestions) {
+          // Module completed - restart from beginning but keep the score
+          this.voice.resetModule();
+          console.log(`[Avatar] Module completed, restarting from beginning`);
         }
       } else {
         this.score = 0;
+        console.log(`[Avatar] New module ${moduleId}, score=0`);
       }
 
       this.nextQuestion();
@@ -156,6 +169,8 @@ export class AvatarComponent implements AfterViewInit {
       // Track progress
       if (this.voice.currentModuleId) {
         this.progressService.recordAnswer(this.voice.currentModuleId, true, 10);
+        const updatedProgress = this.progressService.getModuleProgress(this.voice.currentModuleId);
+        console.log(`[Avatar] Answer recorded: local score=${this.score}, stored score=${updatedProgress?.score}`);
       }
 
       // Cancela qualquer timer antigo

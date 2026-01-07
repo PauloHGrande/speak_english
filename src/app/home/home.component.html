@@ -1,32 +1,83 @@
 <div class="page">
-    <div class="header-bar">
-        <div class="user-info" *ngIf="currentUser$ | async as user">
-            <span class="user-email">{{ user.email }}</span>
-            <button class="logout-btn" (click)="logout()">Logout</button>
-        </div>
-    </div>
-
     <main class="page__main">
-        <div class="main-container">
-            <div class="card">
-                <div class="card__header">
-                    <div class="card__icon">🎯</div>
-                    <div class="card__title-group">
-                        <h2 class="title">Pratique Inglês por Módulos</h2>
-                        <p class="subtitle">Responda corretamente para avançar</p>
+        <div class="two-column-layout">
+            <!-- Left Column: Modules, Calendar, Progress -->
+            <div class="left-column">
+                <!-- User Info and Logout -->
+                <div class="header-bar">
+                    <div class="user-info" *ngIf="currentUser$ | async as user">
+                        <span class="user-email">{{ user.email }}</span>
+                        <button class="logout-btn" (click)="logout()">Logout</button>
                     </div>
                 </div>
-                <div class="card__content">
-                    <app-avatar></app-avatar>
+
+                <app-modules-menu
+                        [modules]="modules"
+                        [activeIndex]="activeIndex"
+                        (select)="onSelectModule($event)"
+                        (moduleReset)="onModuleReset($event)">
+                </app-modules-menu>
+
+                <div class="progress-buttons">
+                    <button class="progress-btn" (click)="showCalendarModal = true">
+                        <span class="btn-icon">📅</span>
+                        <span class="btn-text">Calendar</span>
+                    </button>
+                    <button class="progress-btn" (click)="showHistoryModal = true">
+                        <span class="btn-icon">📊</span>
+                        <span class="btn-text">{{ getProgressDateLabel() }}</span>
+                    </button>
                 </div>
             </div>
 
-            <app-modules-menu
-                    class="page__modules"
-                    [modules]="modules"
-                    [activeIndex]="activeIndex"
-                    (select)="onSelectModule($event)">
-            </app-modules-menu>
+            <!-- Right Column: Avatar -->
+            <div class="right-column">
+                <div class="card">
+                    <div class="card__header">
+                        <div class="card__icon">🎯</div>
+                        <div class="card__title-group">
+                            <h2 class="title">Pratique Inglês por Módulos</h2>
+                            <p class="subtitle">Responda corretamente para avançar</p>
+                        </div>
+                    </div>
+                    <div class="card__content">
+                        <app-avatar></app-avatar>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- Calendar Modal -->
+    <div class="modal-overlay" *ngIf="showCalendarModal" (click)="showCalendarModal = false">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h3>📅 Progress Calendar</h3>
+                <button class="modal-close" (click)="showCalendarModal = false">&times;</button>
+            </div>
+            <div class="modal-body">
+                <app-session-history
+                    class="modal-history calendar-only"
+                    [externalSelectedDate]="selectedProgressDate"
+                    (dateSelected)="onProgressDateSelected($event)">
+                </app-session-history>
+            </div>
+        </div>
+    </div>
+
+    <!-- Today's Progress Modal -->
+    <div class="modal-overlay" *ngIf="showHistoryModal" (click)="showHistoryModal = false">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h3>📊 {{ getProgressDateLabel() }}</h3>
+                <button class="modal-close" (click)="showHistoryModal = false">&times;</button>
+            </div>
+            <div class="modal-body">
+                <app-session-history
+                    class="modal-history progress-only"
+                    [externalSelectedDate]="selectedProgressDate">
+                </app-session-history>
+            </div>
+        </div>
+    </div>
 </div>

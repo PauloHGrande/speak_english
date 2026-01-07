@@ -1,30 +1,66 @@
-<div class="session-history" *ngIf="todayActivities.length > 0">
-  <div class="history-header" (click)="toggleHistory()">
-    <div class="header-content">
-      <span class="header-icon">📊</span>
-      <span class="header-title">Today's Progress</span>
-      <span class="header-toggle">{{ showHistory ? '▼' : '▲' }}</span>
+<div class="session-history">
+  <!-- Progress Calendar -->
+  <div class="calendar-section">
+    <div class="calendar-header" (click)="toggleCalendar($event)">
+      <div class="header-content">
+        <span class="header-icon">📅</span>
+        <span class="header-title">Progress Calendar</span>
+        <span class="header-toggle">{{ showCalendar ? '▼' : '▲' }}</span>
+      </div>
+
+      <div class="quick-stats" *ngIf="showCalendar">
+        <span class="stat">{{ getTotalQuestionsToday() }} questions</span>
+        <span class="stat-separator">•</span>
+        <span class="stat">{{ getOverallAccuracy() }}% accuracy</span>
+      </div>
     </div>
-    <div class="quick-stats">
-      <span class="stat">{{ getTotalQuestionsToday() }} questions</span>
-      <span class="stat-separator">•</span>
-      <span class="stat">{{ getOverallAccuracy() }}% accuracy</span>
+
+    <div class="calendar-body" *ngIf="showCalendar">
+      <mat-calendar
+              [selected]="selectedDate"
+              [dateClass]="dateClass"
+              (selectedChange)="onDateSelected($event)">
+      </mat-calendar>
     </div>
   </div>
 
-  <div class="history-body" *ngIf="showHistory">
-    <div class="activity-list">
-      <div class="activity-item" *ngFor="let activity of todayActivities">
-        <div class="activity-header">
-          <span class="activity-module">{{ activity.moduleTitle }}</span>
-          <span class="activity-badge" [class.high-accuracy]="activity.accuracy >= 80">
-            {{ activity.accuracy }}%
-          </span>
-        </div>
-        <div class="activity-details">
-          <span>{{ activity.correctAnswers }}/{{ activity.questionsAnswered }} correct</span>
+  <!-- Histórico / Today's Progress -->
+  <div class="progress-section">
+    <div class="history-header" (click)="toggleHistory($event)">
+      <div class="header-content">
+        <span class="header-icon">📊</span>
+        <span class="header-title">{{ getSelectedDateLabel() }}</span>
+        <span class="header-toggle">{{ showHistory ? '▼' : '▲' }}</span>
+      </div>
+      <div class="quick-stats" *ngIf="showHistory">
+        <span class="stat">{{ getTotalQuestionsToday() }} questions</span>
+        <span class="stat-separator">•</span>
+        <span class="stat">{{ getOverallAccuracy() }}% accuracy</span>
+      </div>
+    </div>
+
+    <div class="history-body" *ngIf="showHistory">
+      <div class="activity-list" *ngIf="todayActivities?.length; else noActivity">
+        <div class="activity-item" *ngFor="let activity of todayActivities">
+          <div class="activity-header">
+            <span class="activity-module">{{ activity.moduleTitle }}</span>
+            <span class="activity-badge"
+                  [ngClass]="{ 'high-accuracy': activity.accuracy >= 80 }">
+              {{ activity.accuracy }}%
+            </span>
+          </div>
+          <div class="activity-details">
+            {{ activity.correctAnswers }}/{{ activity.questionsAnswered }} correct
+          </div>
         </div>
       </div>
+
+      <ng-template #noActivity>
+        <div class="no-activity">
+          <span class="no-activity-icon">🗓️</span>
+          <p>No learning activity recorded for this date</p>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>
